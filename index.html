@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+
+<head>
+  <title>W3.CSS Template</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js"
+    integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
+  <link href='https://fonts.googleapis.com/css?family=Exo' rel='stylesheet'>
+  <script src="https://kit.fontawesome.com/11e440838c.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+
+<body>
+  <div class="tabcol">
+    <button id="Dashboardbut" class="tabbutton" onclick="openTab('Dashboard')">
+      <i class="fa-solid fa-house-chimney fa-xl"></i>
+      Dashboard
+    </button>
+    <button id="Statisticsbut" class="tabbutton" onclick="openTab('Statistics')">
+      <i class="fa-solid fa-chart-simple fa-xl"></i>
+      Statistics
+    </button>
+    <button id="Settingsbut" class="tabbutton" onclick="openTab('Settings')">
+      <i class="fa-solid fa-sliders fa-xl"></i>
+      Settings
+    </button>
+    <button id="Forcastbut" class="tabbutton" onclick="openTab('Forcast')">
+      <i class="fa-solid fa-cloud-sun-rain fa-xl"></i>
+      Forcast
+    </button>
+    <button id="Aboutbut" class="tabbutton" onclick="openTab('About')">
+      <i class="fa-solid fa-info fa-xl"></i>
+      About
+    </button>
+  </div>
+
+  <div class="maincontainer">
+    <div id="Dashboard" class="tabs ">
+      <h2>Dashboard</h2>
+      <p>Overview on all the connected sensors available at the moment</p>
+      <div id="cardcontainer" class="grid">
+        <div class="card" id="card">
+
+          <div class="about" id="cardgraph">
+
+            <h3 class="alignleft" id="currentsensor"></h3>
+            <h3 class="alignright" id="currentread"></h3>
+
+            <div class="legends">
+              <div class="info"><span class="legend "></span>
+                <p>24 hours</p>
+              </div>
+            </div>
+          </div>
+          <canvas id="canvas"></canvas>
+
+          <div class="axis">
+            <div class="tick"> 6 </div>
+            <div class="tick"> 12 </div>
+            <div class="tick"> 18 </div>
+            <div id="tooltip">
+              <div class="tooltip-label"></div>
+              <div class="tooltip-value">
+                <span class="color-circle"></span>
+                <span class="value"></span>
+                <br>
+                <div class="tooltip-label2"></div>
+                <span class="color-circle2"></span>
+                <span class="value2"></span>
+              </div>
+            </div>
+            <div id="tooltip2">
+            </div>
+          </div>
+        </div>
+        <div class="card" id="card">
+
+          <div class="about" id="cardgraph">
+
+            <h3 class="alignleft" id="currentsensor"></h3>
+            <h3 class="alignright" id="currentread"></h3>
+
+            <div class="legends">
+              <div class="info"><span class="legend "></span>
+                <p>24 hours</p>
+              </div>
+            </div>
+          </div>
+          <canvas id="canvas"></canvas>
+
+          <div class="axis">
+            <div class="tick"> 6 </div>
+            <div class="tick"> 12 </div>
+            <div class="tick"> 18 </div>
+            <div id="tooltip">
+              <div class="tooltip-label"></div>
+              <div class="tooltip-value">
+                <span class="color-circle"></span>
+                <span class="value"></span>
+                <br>
+                <div class="tooltip-label2"></div>
+                <span class="color-circle2"></span>
+                <span class="value2"></span>
+              </div>
+            </div>
+            <div id="tooltip2">
+            </div>
+          </div>
+        </div>
+        <div class="card" id="card">
+
+          <div class="about" id="cardgraph">
+
+            <h3 class="alignleft" id="currentsensor"></h3>
+            <h3 class="alignright" id="currentread"></h3>
+
+            <div class="legends">
+              <div class="info"><span class="legend "></span>
+                <p>24 hours</p>
+              </div>
+            </div>
+          </div>
+          <canvas id="canvas"></canvas>
+
+          <div class="axis">
+            <div class="tick"> 6 </div>
+            <div class="tick"> 12 </div>
+            <div class="tick"> 18 </div>
+            <div id="tooltip">
+              <div class="tooltip-label"></div>
+              <div class="tooltip-value">
+                <span class="color-circle"></span>
+                <span class="value"></span>
+                <br>
+                <div class="tooltip-label2"></div>
+                <span class="color-circle2"></span>
+                <span class="value2"></span>
+              </div>
+            </div>
+            <div id="tooltip2">
+            </div>
+          </div>
+        </div>
+        <div class="card" id="card">
+
+          <div class="about" id="cardgraph">
+
+            <h3 class="alignleft" id="currentsensor"></h3>
+            <h3 class="alignright" id="currentread"></h3>
+
+            <div class="legends">
+              <div class="info"><span class="legend "></span>
+                <p>24 hours</p>
+              </div>
+            </div>
+          </div>
+          <canvas id="canvas"></canvas>
+
+          <div class="axis">
+            <div class="tick"> 6 </div>
+            <div class="tick"> 12 </div>
+            <div class="tick"> 18 </div>
+            <div id="tooltip">
+              <div class="tooltip-label"></div>
+              <div class="tooltip-value">
+                <span class="color-circle"></span>
+                <span class="value"></span>
+                <br>
+                <div class="tooltip-label2"></div>
+                <span class="color-circle2"></span>
+                <span class="value2"></span>
+              </div>
+            </div>
+            <div id="tooltip2">
+            </div>
+          </div>
+        </div>
+        <div class="card" id="card">
+
+          <div class="about" id="cardgraph">
+
+            <h3 class="alignleft" id="currentsensor"></h3>
+            <h3 class="alignright" id="currentread"></h3>
+
+            <div class="legends">
+              <div class="info"><span class="legend "></span>
+                <p>24 hours</p>
+              </div>
+            </div>
+          </div>
+          <canvas id="canvas"></canvas>
+
+          <div class="axis">
+            <div class="tick"> 6 </div>
+            <div class="tick"> 12 </div>
+            <div class="tick"> 18 </div>
+            <div id="tooltip">
+              <div class="tooltip-label"></div>
+              <div class="tooltip-value">
+                <span class="color-circle"></span>
+                <span class="value"></span>
+                <br>
+                <div class="tooltip-label2"></div>
+                <span class="color-circle2"></span>
+                <span class="value2"></span>
+              </div>
+            </div>
+            <div id="tooltip2">
+            </div>
+          </div>
+        </div>
+        <div class="card" id="card">
+
+          <div class="about" id="cardgraph">
+
+            <h3 class="alignleft" id="currentsensor"></h3>
+            <h3 class="alignright" id="currentread"></h3>
+
+            <div class="legends">
+              <div class="info"><span class="legend "></span>
+                <p>24 hours</p>
+              </div>
+            </div>
+          </div>
+          <canvas id="canvas"></canvas>
+
+          <div class="axis">
+            <div class="tick"> 6 </div>
+            <div class="tick"> 12 </div>
+            <div class="tick"> 18 </div>
+            <div id="tooltip">
+              <div class="tooltip-label"></div>
+              <div class="tooltip-value">
+                <span class="color-circle"></span>
+                <span class="value"></span>
+                <br>
+                <div class="tooltip-label2"></div>
+                <span class="color-circle2"></span>
+                <span class="value2"></span>
+              </div>
+            </div>
+            <div id="tooltip2">
+            </div>
+          </div>
+        </div>
+        <div class="card" id="card">
+
+          <div class="about" id="cardgraph">
+
+            <h3 class="alignleft" id="currentsensor"></h3>
+            <h3 class="alignright" id="currentread"></h3>
+
+            <div class="legends">
+              <div class="info"><span class="legend "></span>
+                <p>24 hours</p>
+              </div>
+            </div>
+          </div>
+          <canvas id="canvas"></canvas>
+
+          <div class="axis">
+            <div class="tick"> 6 </div>
+            <div class="tick"> 12 </div>
+            <div class="tick"> 18 </div>
+            <div id="tooltip">
+              <div class="tooltip-label"></div>
+              <div class="tooltip-value">
+                <span class="color-circle"></span>
+                <span class="value"></span>
+                <br>
+                <div class="tooltip-label2"></div>
+                <span class="color-circle2"></span>
+                <span class="value2"></span>
+              </div>
+            </div>
+            <div id="tooltip2">
+            </div>
+          </div>
+        </div>
+        <div class="card" id="card">
+
+          <div class="about" id="cardgraph">
+
+            <h3 class="alignleft" id="currentsensor"></h3>
+            <h3 class="alignright" id="currentread"></h3>
+
+            <div class="legends">
+              <div class="info"><span class="legend "></span>
+                <p>24 hours</p>
+              </div>
+            </div>
+          </div>
+          <canvas id="canvas"></canvas>
+
+          <div class="axis">
+            <div class="tick"> 6 </div>
+            <div class="tick"> 12 </div>
+            <div class="tick"> 18 </div>
+            <div id="tooltip">
+              <div class="tooltip-label"></div>
+              <div class="tooltip-value">
+                <span class="color-circle"></span>
+                <span class="value"></span>
+                <br>
+                <div class="tooltip-label2"></div>
+                <span class="color-circle2"></span>
+                <span class="value2"></span>
+              </div>
+            </div>
+            <div id="tooltip2">
+            </div>
+          </div>
+        </div>
+        <div class="card" id="card">
+
+          <div class="about" id="cardgraph">
+
+            <h3 class="alignleft" id="currentsensor"></h3>
+            <h3 class="alignright" id="currentread"></h3>
+
+            <div class="legends">
+              <div class="info"><span class="legend "></span>
+                <p>24 hours</p>
+              </div>
+            </div>
+          </div>
+          <canvas id="canvas"></canvas>
+
+          <div class="axis">
+            <div class="tick"> 6 </div>
+            <div class="tick"> 12 </div>
+            <div class="tick"> 18 </div>
+            <div id="tooltip">
+              <div class="tooltip-label"></div>
+              <div class="tooltip-value">
+                <span class="color-circle"></span>
+                <span class="value"></span>
+                <br>
+                <div class="tooltip-label2"></div>
+                <span class="color-circle2"></span>
+                <span class="value2"></span>
+              </div>
+            </div>
+            <div id="tooltip2">
+            </div>
+          </div>
+        </div>
+        <div class="card" id="card">
+
+          <div class="about" id="cardgraph">
+
+            <h3 class="alignleft" id="currentsensor"></h3>
+            <h3 class="alignright" id="currentread"></h3>
+
+            <div class="legends">
+              <div class="info"><span class="legend "></span>
+                <p>24 hours</p>
+              </div>
+            </div>
+          </div>
+          <canvas id="canvas"></canvas>
+
+          <div class="axis">
+            <div class="tick"> 6 </div>
+            <div class="tick"> 12 </div>
+            <div class="tick"> 18 </div>
+            <div id="tooltip">
+              <div class="tooltip-label"></div>
+              <div class="tooltip-value">
+                <span class="color-circle"></span>
+                <span class="value"></span>
+                <br>
+                <div class="tooltip-label2"></div>
+                <span class="color-circle2"></span>
+                <span class="value2"></span>
+              </div>
+            </div>
+            <div id="tooltip2">
+            </div>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+
+    <div id="Statistics" class="tabs" style="display:none">
+      <h2>Statistics</h2>
+      <p>In-depth gfraphing options with many useful calcualtions</p>
+    </div>
+
+    <div id="Settings" class="tabs" style="display:none">
+      <h2>Settings</h2>
+      <p>Manage your setup</p>
+    </div>
+    <div id="Forcast" class="tabs" style="display:none">
+      <h2>Forcast</h2>
+      <p>Get the latest data from weahter satellites and other weatherstations</p>
+    </div>
+    <div id="About" class="tabs" style="display:none">
+      <h2>About Us</h2>
+      <p>Know more about Dubai Astronomy Group</p>
+    </div>
+
+  </div>
+  <!-- <button type="button" class="themebutton" onclick="myFunction_set()"> -->
+
+  </button>
+  <script src="scripts.js"></script>
+
+</body>
+
+</html>
