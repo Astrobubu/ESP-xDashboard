@@ -115,9 +115,9 @@ i {
   width: 100%;
 }
 
-.about {
-  /* padding: 1em; */
-}
+/* .about {
+  padding: 1em;
+} */
 
 .card .about h3 {
   font-size: 24px;
@@ -160,7 +160,7 @@ i {
 .axis .tick {
   flex: 1;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   opacity: 0.2;
   font-size: 11px;
   text-align: center;
