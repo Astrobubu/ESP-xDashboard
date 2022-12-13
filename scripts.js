@@ -332,6 +332,7 @@ new Chart(document.getElementById("line-chart"), {
         borderColor: "#3e95cd",
         fill: false
       }, { 
+        
         data: [282,350,411,502,635,809,947,1402,3700,5267],
         label: "Asia",
         borderColor: "#8e5ea2",
