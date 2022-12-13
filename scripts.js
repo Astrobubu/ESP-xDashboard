@@ -52,7 +52,7 @@ function processTooltipModel(model) {
   )[0];
   tooltip.querySelector("#tooltip-label" + GraphID).textContent = ylabel2;
   tooltip.style.left = model.caretX - 7 + "px";
-  tooltip.style.top = model.dataPoints[0].y - 242 + "px";
+  tooltip.style.top = model.dataPoints[0].y - 228 + "px";
   tooltip.style.display = "block";
   tooltip.querySelector("#tooltip-label" + GraphID).textContent = ylabel2;
   tooltip.querySelector("#tooltip-label2" + GraphID).textContent = ylabel1;
@@ -65,7 +65,7 @@ function processTooltipModel(model) {
     "TooltipSelector2" + GraphID
   )[0];
   tooltip2.style.left = model.caretX - 7 + "px";
-  tooltip2.style.top = model.dataPoints[1].y - 140 + "px";
+  tooltip2.style.top = model.dataPoints[1].y - 143 + "px";
   tooltip2.style.display = "block";
   // console.log(model);
 }
@@ -183,7 +183,7 @@ function createGraph(
             ticks: {
               beginAtZero: false,
               // mirror: true,
-              // stepSize: 15,
+              stepSize: 15,
             },
           },
         ],
@@ -214,95 +214,95 @@ function createGraph(
 }
 
 // // CHART JS
-// var GraphID = 1;
-// var cardlabel = "Temperature";
-// var unit = "°C";
-// var latestread = "25";
-// var ylabel1 = "Yesterday";
-// var ydata1 = [
-//   25, 25, 24, 23, 23, 23, 22, 21, 22, 23, 25, 26, 27, 28, 29, 28, 27, 27, 26,
-//   27, 26, 25, 25, 26,
-// ];
-// var ylabel2 = "Today";
-// var ydata2 = [
-//   25, 25, 24, 24, 23, 22, 22, 21, 22, 23, 25, 27, 28, 29, 29, 28, 27, 27, 27,
-//   26, 26, 26, 26, 27,
-// ];
-// var xdata = [
-//   "0",
-//   "1",
-//   "2",
-//   "3",
-//   "4",
-//   "5",
-//   "6",
-//   "7",
-//   "8",
-//   "9",
-//   "10",
-//   "11",
-//   "12",
-//   "13",
-//   "14",
-//   "15",
-//   "16",
-//   "17",
-//   "18",
-//   "19",
-//   "20",
-//   "21",
-//   "22",
-//   "23",
-// ];
+var GraphID = 1;
+var cardlabel = "Temperature";
+var unit = "°C";
+var latestread = "25";
+var ylabel1 = "Yesterday";
+var ydata1 = [
+  25, 25, 24, 23, 23, 23, 22, 21, 22, 23, 25, 26, 27, 28, 29, 28, 27, 27, 26,
+  27, 26, 25, 25, 26,
+];
+var ylabel2 = "Today";
+var ydata2 = [
+  25, 25, 24, 24, 23, 22, 22, 21, 22, 23, 25, 27, 28, 29, 29, 28, 27, 27, 27,
+  26, 26, 26, 26, 27,
+];
+var xdata = [
+  "0",
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "10",
+  "11",
+  "12",
+  "13",
+  "14",
+  "15",
+  "16",
+  "17",
+  "18",
+  "19",
+  "20",
+  "21",
+  "22",
+  "23",
+];
 
-// var todaycolor = "#FF55B8";
-// var yestercolor = "#2a4bb3";
+var todaycolor = "#FF55B8";
+var yestercolor = "#2a4bb3";
+createGraph(
+  (GraphID = 2),
+  todaycolor,
+  yestercolor,
+  cardlabel,
+  unit,
+  latestread,
+  ylabel1,
+  ydata1,
+  ylabel2,
+  ydata2,
+  xdata
+);
+
+console.log("fuck this")
+
+
+
+
 // createGraph(
-//   (GraphID = 2),
-//   todaycolor,
-//   yestercolor,
-//   cardlabel,
-//   unit,
-//   latestread,
-//   ylabel1,
-//   ydata1,
-//   ylabel2,
-//   ydata2,
-//   xdata
+//   (GraphID = 22),
+//   (todaycolor = "#EE6A59"),
+//   (yestercolor = "#F9AC67"),
+//   (cardlabel = "Humidity"),
+//   (unit = "%"),
+//   (latestread = 50),
+//   (ylabel1 = "Yesterday"),
+//   (ydata1 = [10, 20, 30, 25, 30, 10]),
+//   (ylabel2 = "Today"),
+//   (ydata2 = [20, 30, 40, 35, 30, 20]),
+//   (xdata = [1, 2, 3, 4, 5, 6])
 // );
 
-// console.log("fuck this")
-
-
-
-
-createGraph(
-  (GraphID = 22),
-  (todaycolor = "#EE6A59"),
-  (yestercolor = "#F9AC67"),
-  (cardlabel = "Humidity"),
-  (unit = "%"),
-  (latestread = 50),
-  (ylabel1 = "Yesterday"),
-  (ydata1 = [10, 20, 30, 25, 30, 10]),
-  (ylabel2 = "Today"),
-  (ydata2 = [20, 30, 40, 35, 30, 20]),
-  (xdata = [1, 2, 3, 4, 5, 6])
-);
-
-createGraph(
-  (GraphID = 23),
-  (todaycolor = "#EE6A59"),
-  (yestercolor = "#F9AC67"),
-  (cardlabel = "Humidity"),
-  (unit = "%"),
-  (latestread = 50),
-  (ylabel1 = "Yesterday"),
-  (ydata1 = [120, 220, 320, 225, 230, 120]),
-  (ylabel2 = "Today"),
-  (ydata2 = [220, 230, 420, 325, 302, 220]),
-  (xdata = [1, 2, 3, 4, 5, 6])
-);
+// createGraph(
+//   (GraphID = 23),
+//   (todaycolor = "#EE6A59"),
+//   (yestercolor = "#F9AC67"),
+//   (cardlabel = "Humidity"),
+//   (unit = "%"),
+//   (latestread = 50),
+//   (ylabel1 = "Yesterday"),
+//   (ydata1 = [120, 220, 320, 225, 230, 120]),
+//   (ylabel2 = "Today"),
+//   (ydata2 = [220, 230, 420, 325, 302, 220]),
+//   (xdata = [1, 2, 3, 4, 5, 6])
+// );
 
 
 
