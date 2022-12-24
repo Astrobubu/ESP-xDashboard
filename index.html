@@ -11,6 +11,10 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.js"></script> -->
     <script
       src="  https://cdn.jsdelivr.net/npm/chartjs-plugin-crosshair@1.2.0"
@@ -66,42 +70,43 @@
       <div id="Dashboard" class="tabs">
         <h2>Dashboard</h2>
         <p>Overview on all the connected sensors available at the moment</p>
+
         <div id="cardcontainer" class="grid">
           <div class="card">
             <!-- Custom information -->
             <div class="about">
-              <h3>Chart.js</h3>
+              <h3>Temprature</h3>
               <div class="legends"></div>
             </div>
-
-            <canvas id="line-chart"></canvas>
+            <figure class="highcharts-figure">
+              <div id="containerhc"></div>
+            </figure>
+            <!-- <canvas id="line-chart"></canvas> -->
           </div>
         </div>
-
-        <div id="Statistics" class="tabs" style="display: none">
-          <h2>Statistics</h2>
-          <p>In-depth gfraphing options with many useful calcualtions</p>
-        </div>
-
-        <div id="Settings" class="tabs" style="display: none">
-          <h2>Settings</h2>
-          <p>Manage your setup</p>
-        </div>
-        <div id="Forcast" class="tabs" style="display: none">
-          <h2>Forcast</h2>
-          <p>
-            Get the latest data from weahter satellites and other
-            weatherstations
-          </p>
-        </div>
-        <div id="About" class="tabs" style="display: none">
-          <h2>About Us</h2>
-          <p>Know more about Dubai Astronomy Group</p>
-        </div>
       </div>
-      <!-- <button type="button" class="themebutton" onclick="myFunction_set()"> -->
+      <div id="Statistics" class="tabs" style="display: none">
+        <h2>Statistics</h2>
+        <p>In-depth gfraphing options with many useful calcualtions</p>
+      </div>
 
-      <script src="scripts.js"></script>
+      <div id="Settings" class="tabs" style="display: none">
+        <h2>Settings</h2>
+        <p>Manage your setup</p>
+      </div>
+      <div id="Forcast" class="tabs" style="display: none">
+        <h2>Forcast</h2>
+        <p>
+          Get the latest data from weahter satellites and other weatherstations
+        </p>
+      </div>
+      <div id="About" class="tabs" style="display: none">
+        <h2>About Us</h2>
+        <p>Know more about Dubai Astronomy Group</p>
+      </div>
     </div>
+    <!-- <button type="button" class="themebutton" onclick="myFunction_set()"> -->
+
+    <script src="scripts.js"></script>
   </body>
 </html>
