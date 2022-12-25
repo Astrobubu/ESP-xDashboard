@@ -389,15 +389,46 @@ console.log("fuck this");
 //   (ydata2 = [20, 30, 40, 35, 30, 20]),
 //   (xdata = [1, 2, 3, 4, 5, 6])
 // );
-
+// var HighchartConfig =
 Highcharts.chart("containerhc", {
+  series: [
+    {
+      name: "Yesterday",
+      data: [
+        25, 25, 24, 23, 23, 23, 22, 21, 22, 23, 25, 26, 27, 28, 29, 28, 27, 27,
+        26, 27, 26, 25, 25, 26,
+      ],
+      color: "#F9AC67",
+      marker: {
+        enabled: false,
+      },
+    },
+    {
+      name: "Today",
+      data: [
+        25, 25, 24, 24, 23, 22, 22, 21, 22, 23, 25, 27, 28, 29, 29, 28, 27, 27,
+        27, 26, 26, 26, 26, 27,
+      ],
+      color: todaycolor,
+      marker: {
+        enabled: false,
+      },
+    },
+  ],
+
   title: {
     text: "",
     align: "left",
   },
   chart: {
     height: 200,
-    type: 'spline',
+    type: "spline",
+    marginLeft: 0,
+      marginRight: 0,
+      spacingLeft: 0,
+      spacingRight: 0,
+      marginBottom: 35,
+
     backgroundColor: "rgba(255, 255, 255, 0)",
   },
 
@@ -410,19 +441,22 @@ Highcharts.chart("containerhc", {
       text: " ",
     },
     gridLineColor: "rgba(255, 255, 255, 0.1)",
-    visible:false
-
+    visible: false,
   },
 
   xAxis: {
-
     gridLineColor: "rgba(255, 255, 255, 0)",
-    lineColor:"rgba(255, 255, 255, 0)",
+    lineColor: "rgba(255, 255, 255, 0)",
     crosshair: true,
+    tickLength: 0,
+    minPadding:0,
+    maxPadding:0,
+    // showFirstLabel: false,
+    tickInterval:5,
     labels: {
-      format: '{value}:00'
-  },
-  tickLength:0,
+      format: "{value}:00",
+    },
+    
   },
 
   legend: {
@@ -432,55 +466,26 @@ Highcharts.chart("containerhc", {
     enabled: false,
   },
   tooltip: {
-    backgroundColor: 'rgb(42,76,179)',
-    style:{
-      color:"#fefefe",
+    backgroundColor: "rgb(42,76,179)",
+    style: {
+      color: "#fefefe",
     },
     borderRadius: 3,
     borderWidth: 0,
     shared: true,
-},
-
+  },
 
   plotOptions: {
-    
     series: {
       label: {
         connectorAllowed: false,
       },
-      pointStart: 0,
+      pointStart: 1,
     },
-    spline:{
+    spline: {
       marker: false,
-    },  
-    
+    },
   },
-
-  series: [
-    {
-      name: "Yesterday",
-      data: [
-        25, 25, 24, 23, 23, 23, 22, 21, 22, 23, 25, 26, 27, 28, 29, 28, 27, 27, 26,
-        27, 26, 25, 25, 26,
-      ],
-      color: "#F9AC67",
-      marker: {
-        enabled: false,
-      },
-      
-    },
-    {
-      name: "Today",
-      data: [
-        25, 25, 24, 24, 23, 22, 22, 21, 22, 23, 25, 27, 28, 29, 29, 28, 27, 27, 27,
-        26, 26, 26, 26, 27,
-      ],
-      color: todaycolor,
-      marker: {
-        enabled: false,
-      },
-    },
-  ],
 
   responsive: {
     rules: [
@@ -489,7 +494,6 @@ Highcharts.chart("containerhc", {
           maxWidth: 500,
         },
         chartOptions: {
-
           legend: {
             layout: "horizontal",
             align: "center",
@@ -501,6 +505,9 @@ Highcharts.chart("containerhc", {
   },
 });
 
+var cardgraph = document.getElementById("cardgraph");
+cardgraph.querySelector("#currentsensor").textContent = "Tempreataure";
+cardgraph.querySelector("#currentread").textContent = latestread + unit;
 // createGraph(
 //   (GraphID = 23),
 //   (todaycolor = "#EE6A59"),

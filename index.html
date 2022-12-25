@@ -74,10 +74,15 @@
         <div id="cardcontainer" class="grid">
           <div class="card">
             <!-- Custom information -->
-            <div class="about">
-              <h3>Temprature</h3>
+            <div class="about" id="cardgraph">
+              <!-- <h3>Temprature</h3> -->
+              <h3 class="alignleft" id="currentsensor"></h3>
+              <h3 class="alignright" id="currentread"></h3>
+              <br>
+              <h4>24 hours</h4>
               <div class="legends"></div>
             </div>
+
             <figure class="highcharts-figure">
               <div id="containerhc"></div>
             </figure>
