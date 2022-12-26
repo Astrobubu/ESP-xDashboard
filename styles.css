@@ -175,7 +175,10 @@ i {
 .card .about h3 {
   font-size: 24px;
 }
-h4 {
+h4{
+  color: #aaa;
+}
+.card h4 {
   margin-top: 1.1em;
   margin-bottom: 0.1em;
   color: #aaa;

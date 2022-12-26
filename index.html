@@ -69,16 +69,16 @@
     <div class="maincontainer">
       <div id="Dashboard" class="tabs">
         <h2>Dashboard</h2>
-        <p>Overview on all the connected sensors available at the moment</p>
+        <h4>Overview on all the connected sensors available at the moment</h4>
 
         <div id="cardcontainer" class="grid">
           <div class="card">
             <!-- Custom information -->
-            <div class="about" id="cardgraph">
+            <div class="about" id="cardgraphtemp">
               <!-- <h3>Temprature</h3> -->
-              <h3 class="alignleft" id="currentsensor"></h3>
-              <h3 class="alignright" id="currentread"></h3>
-              <br>
+              <h3 class="alignleft" id="currentsensortemp"></h3>
+              <h3 class="alignright" id="currentreadtemp"></h3>
+              <br />
               <h4>24 hours</h4>
               <div class="legends"></div>
             </div>
@@ -86,7 +86,42 @@
             <figure class="highcharts-figure">
               <div id="containerhc"></div>
             </figure>
-            <!-- <canvas id="line-chart"></canvas> -->
+          </div>
+          <div id="cardcontainer" class="grid">
+            <div class="card">
+              <!-- Custom information -->
+              <div class="about" id="cardgraphhumd">
+                <!-- <h3>Temprature</h3> -->
+                <h3 class="alignleft" id="currentsensorhumd"></h3>
+                <h3 class="alignright" id="currentreadhumd"></h3>
+                <br />
+                <h4>24 hours</h4>
+                <div class="legends"></div>
+              </div>
+
+              <figure class="highcharts-figure">
+                <div id="containerhumd"></div>
+              </figure>
+              <!-- <canvas id="line-chart"></canvas> -->
+            </div>
+          </div>
+          <div id="cardcontainer" class="grid">
+            <div class="card">
+              <!-- Custom information -->
+              <div class="about" id="cardgraphpressure">
+                <!-- <h3>Temprature</h3> -->
+                <h3 class="alignleft" id="currentsensorpressure"></h3>
+                <h3 class="alignright" id="currentreadpressure"></h3>
+                <br />
+                <h4>24 hours</h4>
+                <div class="legends"></div>
+              </div>
+
+              <figure class="highcharts-figure">
+                <div id="containerpressure"></div>
+              </figure>
+              <!-- <canvas id="line-chart"></canvas> -->
+            </div>
           </div>
         </div>
       </div>
