@@ -47,20 +47,19 @@ function openTab(tabname) {
 var todaycolor = "#FF55B8";
 var yestercolor = "#2a4bb3";
 
-var tempTodayColor = "#2a4bb3";
-var tempYesterdayColor = "#F9AC67";
-var humidityTodayColor = "#FF55B8";
-var humidityYesterdayColor = "#F9AC67";
-var pressureTodayColor = "#FF55B8";
-var pressureYesterdayColor = "#F9AC67";
+var tempTodayColor = "#ff844c";
+var tempYesterdayColor = "#b91400";
+var humidityTodayColor = "#6ab7ff";
+var humidityYesterdayColor = "#005cb2";
+var pressureTodayColor = "#5ddef4";
+var pressureYesterdayColor = "#007c91";
+var showYesterdayData = 1;
 
-Highcharts.chart("containerhc", {
+let TempChart = Highcharts.chart("containertemp", {
   series: [
     {
       name: "Yesterday",
-      data: [
-        25, 25, 24, 23, 23, 23, 22, 21, 22, 23, 25, 26, 27, 28, 29, 28, 27, 27,
-        26, 27, 26, 25, 25, 26,
+      data: [null
       ],
       color: tempYesterdayColor,
       marker: {
@@ -168,7 +167,7 @@ Highcharts.chart("containerhc", {
   },
 });
 
-Highcharts.chart("containerhumd", {
+let HumidityChart = Highcharts.chart("containerhumd", {
   series: [
     {
       name: "Yesterday",
@@ -282,7 +281,7 @@ Highcharts.chart("containerhumd", {
   },
 });
 
-Highcharts.chart("containerpressure", {
+let PressureChart = Highcharts.chart("containerpressure", {
   series: [
     {
       name: "Yesterday",
@@ -419,6 +418,32 @@ cardgraphPressure.querySelector("#currentsensorpressure").textContent =
   "Air Pressure";
 cardgraphPressure.querySelector("#currentreadpressure").textContent =
   latestreadPressure + pressureUnit;
+
+
+var delayInMilliseconds = 3000; //1 second
+
+setTimeout(function() {
+
+  TempChart.update({
+    series: [ 
+      {
+      name: "Yesterday",
+      data: [
+        25, 25, 24, 24, 23, 22, 22, 21, 22, 23, 25, 27, 28, 29, 29, 28, 27, 27,
+        27, 26, 26, 26, 26, 27,
+      ],
+    },
+    {
+      name: "Today",
+      data: [
+        25, 25, 22, 24, 22, 22, 22, 21, 22, 23, 22, 27, 22, 29, 29, 22, 27, 27,
+        27, 26, 26, 26, 26, 27,
+      ],
+      }
+    ]},
+  );
+}, delayInMilliseconds);
+  
 
 //SET COOKIE
 // setCookie("user_email", "suck ma pp", 30); //set "user_email" cookie, expires in 30 days
