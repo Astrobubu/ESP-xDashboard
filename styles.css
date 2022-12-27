@@ -223,5 +223,30 @@ h4 {
 #darkmode {
   display: inline-block;
   padding-right: 2em;
+  transition: 0.3s;
   vertical-align: middle;
 }
+#darkmode:hover{
+  transition: 0.3s;
+}
+
+.mainThemeSelector{
+  vertical-align: middle;
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  /* background-color: #2a4bb3; */
+  border-radius: 2em;
+  border-width: 0px;
+  cursor: pointer;
+  transition: 0.1s;
+
+
+}
+.mainThemeSelector:hover{
+  border-style: solid;
+  border-width: 2px;
+  border-color: var(--text-color);
+  transition: 0.2s;
+}
+

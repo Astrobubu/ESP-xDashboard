@@ -44,6 +44,15 @@ function openTab(tabname) {
     "var(--theme-color)";
 }
 
+function rgb2hex(rgb){
+  rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
+  return (rgb && rgb.length === 4) ? "#" +
+   ("0" + parseInt(rgb[1],10).toString(16)).slice(-2) +
+   ("0" + parseInt(rgb[2],10).toString(16)).slice(-2) +
+   ("0" + parseInt(rgb[3],10).toString(16)).slice(-2) : '';
+ }
+
+
 var textOrGauge = 1;
 
 var todaycolor = "#FF55B8";
@@ -60,6 +69,22 @@ var showYesterdayData = 1;
 var enabletemperature = 1;
 var enbalehumidity = 1;
 var enablepressure = 1;
+
+if (getCookie("lightdarkmode")) {
+  var lightmode = getCookie("lightdarkmode");
+  var lightmodetoggle = false;
+} else {
+  var lightmode = false;
+  var lightmodetoggle = true;
+  setCookie("lightdarkmode", false, 365);
+};
+
+if (getCookie("themeColorCookie")){
+  var themecolor = getCookie("themeColorCookie");
+} else{
+  setCookie("themeColorCookie", "#2a4bb3", 365);
+  var themecolor = "#2a4bb3";
+}
 
 if (enabletemperature) {
   var TempChart = Highcharts.chart("containertemp", {
@@ -134,7 +159,7 @@ if (enabletemperature) {
       enabled: false,
     },
     tooltip: {
-      backgroundColor: "rgb(42,76,179)",
+      backgroundColor: themecolor,
       style: {
         color: "#fefefe",
       },
@@ -196,6 +221,9 @@ if (enabletemperature) {
     cardgraphTemp.querySelector("#currentreadtemp").textContent =
       lastReadTemp + tempUnit;
   }
+} else {
+  let cardgraphTemp = document.getElementById("cardtemp");
+  cardgraphTemp.style.display = "none";
 }
 
 if (enbalehumidity) {
@@ -274,7 +302,7 @@ if (enbalehumidity) {
       enabled: false,
     },
     tooltip: {
-      backgroundColor: "rgb(42,76,179)",
+      backgroundColor:themecolor,
       style: {
         color: "#fefefe",
       },
@@ -340,6 +368,7 @@ if (enbalehumidity) {
   let cardgraphHumd = document.getElementById("cardhumd");
   cardgraphHumd.style.display = "none";
 }
+
 if (enablepressure) {
   var PressureChart = Highcharts.chart("containerpressure", {
     series: [
@@ -418,7 +447,7 @@ if (enablepressure) {
       enabled: false,
     },
     tooltip: {
-      backgroundColor: "rgb(42,76,179)",
+      backgroundColor: themecolor,
       style: {
         color: "#fefefe",
       },
@@ -481,7 +510,10 @@ if (enablepressure) {
     cardgraphPressure.querySelector("#currentreadpressure").textContent =
       latestReadPressure + pressureUnit;
   }
-}
+}else {
+  let cardgraphPress = document.getElementById("cardpress");
+  cardgraphPress.style.display = "none";
+};
 
 // Chart Update
 var delayInMilliseconds = 3000; //1 second
@@ -509,20 +541,18 @@ setTimeout(function () {
 
 //Theme Changer
 
-// document.getElementById("Settingsbut").click();
+document.getElementById("Settingsbut").click();
 
-//SET COOKIE
+var blueTheme = document.getElementById("blueTheme");
+var redTheme = document.getElementById("redTheme");
+var cyanTheme = document.getElementById("cyanTheme");
+var greenTheme = document.getElementById("greenTheme");
+var purpleTheme = document.getElementById("purpleTheme");
+var greyTheme = document.getElementById("greyTheme");
 
-if (getCookie("lightdarkmode")) {
-  var lightmode = getCookie("lightdarkmode");
-  var lightmodetoggle = false;
-} else {
-  var lightmode = false;
-  var lightmodetoggle = true;
-  setCookie("lightdarkmode", false, 365);
-}
 
-var themecolor = "#2a4bb3";
+
+
 const rootelem = document.documentElement;
 
 if (lightmode) {
@@ -532,10 +562,30 @@ if (lightmode) {
   rootelem.style.setProperty("--level-one", "#e7ecee");
   rootelem.style.setProperty("--level-two", "#fdfdfd");
   rootelem.style.setProperty("--level-three", "#385463");
-
+  blueTheme.style.setProperty("background-color", "#2a4bb3"+ "61");
+  redTheme.style.setProperty("background-color", "#A8092E"+ "61");
+  cyanTheme.style.setProperty("background-color", "#6CA7A4"+ "61");
+  greenTheme.style.setProperty("background-color", "#006B43"+ "61");
+  purpleTheme.style.setProperty("background-color", "#6551B6"+ "61");
+  greyTheme.style.setProperty("background-color", "#464555"+ "61");
   $("#darkmode i").addClass("fa-sun").removeClass("fa-moon");
   setCookie("lightdarkmode", true, 365);
-}
+} else {
+  rootelem.style.setProperty("--background-color", "#13131A");
+  rootelem.style.setProperty("--text-color", "#FEFEFE");
+  rootelem.style.setProperty("--theme-color", themecolor);
+  rootelem.style.setProperty("--level-one", "#1C1C24");
+  rootelem.style.setProperty("--level-two", "#464555");
+  rootelem.style.setProperty("--level-three", "#aba9bc");
+  blueTheme.style.setProperty("background-color", "#2a4bb3");
+  redTheme.style.setProperty("background-color", "#A8092E");
+  cyanTheme.style.setProperty("background-color", "#6CA7A4");
+  greenTheme.style.setProperty("background-color", "#006B43");
+  purpleTheme.style.setProperty("background-color", "#6551B6");
+  greyTheme.style.setProperty("background-color", "#464555");
+  $("#darkmode i").addClass("fa-moon").removeClass("fa-sun");
+  setCookie("lightdarkmode", false, 365);
+};
 
 function toggleTheme() {
   if (lightmodetoggle) {
@@ -545,6 +595,12 @@ function toggleTheme() {
     rootelem.style.setProperty("--level-one", "#e7ecee");
     rootelem.style.setProperty("--level-two", "#fdfdfd");
     rootelem.style.setProperty("--level-three", "#385463");
+    blueTheme.style.setProperty("background-color", "#2a4bb3"+ "61");
+    redTheme.style.setProperty("background-color", "#A8092E"+ "61");
+    cyanTheme.style.setProperty("background-color", "#6CA7A4"+ "61");
+    greenTheme.style.setProperty("background-color", "#006B43"+ "61");
+    purpleTheme.style.setProperty("background-color", "#6551B6"+ "61");
+    greyTheme.style.setProperty("background-color", "#464555"+ "61");
     setCookie("lightdarkmode", true, 365);
 
     $("#darkmode i").addClass("fa-sun").removeClass("fa-moon");
@@ -556,11 +612,35 @@ function toggleTheme() {
     rootelem.style.setProperty("--level-one", "#1C1C24");
     rootelem.style.setProperty("--level-two", "#464555");
     rootelem.style.setProperty("--level-three", "#aba9bc");
+    blueTheme.style.setProperty("background-color", "#2a4bb3");
+    redTheme.style.setProperty("background-color", "#A8092E");
+    cyanTheme.style.setProperty("background-color", "#6CA7A4");
+    greenTheme.style.setProperty("background-color", "#006B43");
+    purpleTheme.style.setProperty("background-color", "#6551B6");
+    greyTheme.style.setProperty("background-color", "#464555");
     $("#darkmode i").addClass("fa-moon").removeClass("fa-sun");
     setCookie("lightdarkmode", false, 365);
 
     lightmodetoggle = true;
   }
-}
+};
+
+ 
+function mainAccentChanger(id){
+  let accentSelector = document.getElementById(id);
+  let accentColor = accentSelector.style.backgroundColor
+  if (lightmodetoggle){
+    rootelem.style.setProperty("--theme-color", rgb2hex(accentColor));
+    themecolor = rgb2hex(accentColor);
+    setCookie("themeColorCookie", themecolor, 365);
+  }else{
+    rootelem.style.setProperty("--theme-color", rgb2hex(accentColor)+"61");
+    themecolor = rgb2hex(accentColor)+"61";
+    setCookie("themeColorCookie", themecolor, 365);
+  }
+  // console.log(rgb2hex(accentColor));
+};
+  
 
 //Cookies And Settings
+

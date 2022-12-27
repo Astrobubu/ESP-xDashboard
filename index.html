@@ -136,11 +136,20 @@
       <div id="Settings" class="tabs" style="display: none">
         <h2>Settings</h2>
         <h4>Manage your setup</h4>
-        <div id="config">
+        <div id="darklightswtich">
           <p>Dark/Light Mode:</p>
           <button id="darkmode" class="btn" onclick="toggleTheme()">
             <i id="darkmodeicon" class="fa fa-moon"></i>
           </button>
+        </div>
+        <div>
+          <p>Theme Color:</p>
+          <button class="btn mainThemeSelector" id="blueTheme" onclick="mainAccentChanger('blueTheme')" ></button>
+          <button class="btn mainThemeSelector" id="redTheme" onclick="mainAccentChanger('redTheme')" ></button>
+          <button class="btn mainThemeSelector" id="cyanTheme" onclick="mainAccentChanger('cyanTheme')"></button>
+          <button class="btn mainThemeSelector" id="greenTheme" onclick="mainAccentChanger('greenTheme')"></button>
+          <button class="btn mainThemeSelector" id="purpleTheme" onclick="mainAccentChanger('purpleTheme')"></button>
+          <button class="btn mainThemeSelector" id="greyTheme" onclick="mainAccentChanger('greyTheme')"></button>
         </div>
       </div>
 
