@@ -44,6 +44,10 @@ function openTab(tabname) {
     "var(--theme-color)";
 }
 
+
+
+var textOrGauge = 1;
+
 var todaycolor = "#FF55B8";
 var yestercolor = "#2a4bb3";
 
@@ -400,23 +404,57 @@ var lastReadTemp = 25;
 var tempUnit = "°C";
 var cardgraphTemp = document.getElementById("cardgraphtemp");
 cardgraphTemp.querySelector("#currentsensortemp").textContent = "Temperature";
-cardgraphTemp.querySelector("#currentreadtemp").textContent =
+  if (textOrGauge) {
+    var tempKnob = pureknob.createKnob(50, 50);
+    tempKnob.setProperty("valMin", 0);
+    tempKnob.setProperty("valMax", 100);
+    tempKnob.setProperty("trackWidth", 0.2);
+    tempKnob.setProperty("textScale", 1.5);
+    tempKnob.setProperty("readonly", 1);
+    tempKnob.setProperty("angleStart", -0.75 * 3.1415);
+    tempKnob.setProperty("angleEnd", 0.75 * 3.1415);
+    tempKnob.setProperty("colorFG", tempTodayColor);
+    tempKnob.setProperty("colorBG", tempYesterdayColor);
+    tempKnob.setValue(lastReadTemp);
+    var node = tempKnob.node();
+    var elem = document.getElementById("currentreadtemp");
+    elem.appendChild(node);
+  } else {
+    cardgraphTemp.querySelector("#currentreadtemp").textContent =
   lastReadTemp + tempUnit;
+  }
+
 
 var cardgraphHumd = document.getElementById("cardgraphhumd");
-var latestreadHumdity = 50;
+var latestReadHumdity = 50;
 var humdityUnit = "%";
 cardgraphHumd.querySelector("#currentsensorhumd").textContent = "Humidity";
-cardgraphHumd.querySelector("#currentreadhumd").textContent =
-  latestreadHumdity + humdityUnit;
+if (textOrGauge) {
+  var humidityKnob = pureknob.createKnob(50, 50);
+  humidityKnob.setProperty("valMin", 0);
+  humidityKnob.setProperty("valMax", 100);
+  humidityKnob.setProperty("trackWidth", 0.2);
+  humidityKnob.setProperty("textScale", 1.5);
+  humidityKnob.setProperty("readonly", 1);
+  humidityKnob.setProperty("angleStart", -0.75 * 3.1415);
+  humidityKnob.setProperty("angleEnd", 0.75 * 3.1415);
+  humidityKnob.setProperty("colorFG", humidityTodayColor);
+  humidityKnob.setProperty("colorBG", humidityYesterdayColor);
+  humidityKnob.setValue(latestReadHumdity);
+  var node = humidityKnob.node();
+  var elem = document.getElementById("currentreadhumd");
+  elem.appendChild(node);
+} else {
+  cardgraphHumd.querySelector("#currentreadhumd").textContent =
+    latestReadHumdity + humdityUnit;
+}
+
 
 var cardgraphPressure = document.getElementById("cardgraphpressure");
-var latestreadPressure = 30;
+var latestReadPressure = 30;
 var pressureUnit = " kPa";
 cardgraphPressure.querySelector("#currentsensorpressure").textContent =
   "Air Pressure";
-
-var textOrGauge = 1;
 if (textOrGauge) {
   var pressureKnob = pureknob.createKnob(50, 50);
   pressureKnob.setProperty("valMin", 0);
@@ -428,15 +466,23 @@ if (textOrGauge) {
   pressureKnob.setProperty("angleEnd", 0.75 * 3.1415);
   pressureKnob.setProperty("colorFG", pressureTodayColor);
   pressureKnob.setProperty("colorBG", pressureYesterdayColor);
-  pressureKnob.setValue(latestreadPressure);
+  pressureKnob.setValue(latestReadPressure);
   var node = pressureKnob.node();
   var elem = document.getElementById("currentreadpressure");
   elem.appendChild(node);
 } else {
   cardgraphPressure.querySelector("#currentreadpressure").textContent =
-    latestreadPressure + pressureUnit;
+    latestReadPressure + pressureUnit;
 }
 
+
+
+
+
+
+
+
+// Chart Update
 var delayInMilliseconds = 3000; //1 second
 
 setTimeout(function () {
@@ -460,15 +506,24 @@ setTimeout(function () {
   });
 }, delayInMilliseconds);
 
+
+
+
+
+//Theme Changer
 function changeTheme(checkboxElem) {
   var checkboxElem = document.getElementById("darklightmodecheckbox");
 
   if (checkboxElem.checked) {
-console.log("ON")
+    console.log("ON");
   } else {
-    console.log("OFF")
+    console.log("OFF");
   }
 }
+
+
+
+
 //SET COOKIE
 // setCookie("user_email", "suck ma pp", 30); //set "user_email" cookie, expires in 30 days
 // var userEmail = getCookie("user_email"); //"bobthegreat@gmail.com"
