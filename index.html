@@ -5,6 +5,8 @@
     <title>EPS-xDashboard</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="pureknob.js"></script>
+
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.0/chart.js"
       integrity="sha512-ohOeYvGoLlCxYkfMoPBKJh/wp4Oe76rEJDWOmQq1LLrJD6yCBSPVmhhXuZYvuxdYR3PiozsUf+TZZ6yhVBGYAQ=="
@@ -137,7 +139,7 @@
         <div class="btn-container">
           <i id="darklightmode" class="fa fa-sun-o" aria-hidden="true"></i>
             <label class="switch btn-color-mode-switch">
-                  <input type="checkbox" name="color_mode" id="color_mode" value="1">
+                  <input id="darklightmodecheckbox" type="checkbox" name="color_mode" id="color_mode" onchange="changeTheme()" value="1">
                   <label for="color_mode"  class="btn-color-mode-switch-inner"></label>
               </label>
             <i id="darklightmode"class="fa fa-moon-o" aria-hidden="true"></i>

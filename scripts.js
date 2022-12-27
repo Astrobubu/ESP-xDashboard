@@ -59,8 +59,7 @@ let TempChart = Highcharts.chart("containertemp", {
   series: [
     {
       name: "Yesterday",
-      data: [null
-      ],
+      data: [null],
       color: tempYesterdayColor,
       marker: {
         enabled: false,
@@ -416,35 +415,60 @@ var latestreadPressure = 30;
 var pressureUnit = " kPa";
 cardgraphPressure.querySelector("#currentsensorpressure").textContent =
   "Air Pressure";
-cardgraphPressure.querySelector("#currentreadpressure").textContent =
-  latestreadPressure + pressureUnit;
 
+var textOrGauge = 1;
+if (textOrGauge) {
+  var pressureKnob = pureknob.createKnob(50, 50);
+  pressureKnob.setProperty("valMin", 0);
+  pressureKnob.setProperty("valMax", 100);
+  pressureKnob.setProperty("trackWidth", 0.2);
+  pressureKnob.setProperty("textScale", 1.5);
+  pressureKnob.setProperty("readonly", 1);
+  pressureKnob.setProperty("angleStart", -0.75 * 3.1415);
+  pressureKnob.setProperty("angleEnd", 0.75 * 3.1415);
+  pressureKnob.setProperty("colorFG", pressureTodayColor);
+  pressureKnob.setProperty("colorBG", pressureYesterdayColor);
+  pressureKnob.setValue(latestreadPressure);
+  var node = pressureKnob.node();
+  var elem = document.getElementById("currentreadpressure");
+  elem.appendChild(node);
+} else {
+  cardgraphPressure.querySelector("#currentreadpressure").textContent =
+    latestreadPressure + pressureUnit;
+}
 
 var delayInMilliseconds = 3000; //1 second
 
-setTimeout(function() {
-
+setTimeout(function () {
   TempChart.update({
-    series: [ 
+    series: [
       {
-      name: "Yesterday",
-      data: [
-        25, 25, 24, 24, 23, 22, 22, 21, 22, 23, 25, 27, 28, 29, 29, 28, 27, 27,
-        27, 26, 26, 26, 26, 27,
-      ],
-    },
-    {
-      name: "Today",
-      data: [
-        25, 25, 22, 24, 22, 22, 22, 21, 22, 23, 22, 27, 22, 29, 29, 22, 27, 27,
-        27, 26, 26, 26, 26, 27,
-      ],
-      }
-    ]},
-  );
+        name: "Yesterday",
+        data: [
+          25, 25, 24, 24, 23, 22, 22, 21, 22, 23, 25, 27, 28, 29, 29, 28, 27,
+          27, 27, 26, 26, 26, 26, 27,
+        ],
+      },
+      {
+        name: "Today",
+        data: [
+          25, 25, 22, 24, 22, 22, 22, 21, 22, 23, 22, 27, 22, 29, 29, 22, 27,
+          27, 27, 26, 26, 26, 26, 27,
+        ],
+      },
+    ],
+  });
 }, delayInMilliseconds);
-  
 
+function changeTheme(checkboxElem) {
+  var checkboxElem = document.getElementById("darklightmodecheckbox");
+
+  if (checkboxElem.checked) {
+console.log("ON")
+  } else {
+    console.log("OFF")
+  }
+}
 //SET COOKIE
 // setCookie("user_email", "suck ma pp", 30); //set "user_email" cookie, expires in 30 days
 // var userEmail = getCookie("user_email"); //"bobthegreat@gmail.com"
