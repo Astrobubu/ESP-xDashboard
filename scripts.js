@@ -44,8 +44,6 @@ function openTab(tabname) {
     "var(--theme-color)";
 }
 
-
-
 var textOrGauge = 1;
 
 var todaycolor = "#FF55B8";
@@ -59,351 +57,126 @@ var pressureTodayColor = "#5ddef4";
 var pressureYesterdayColor = "#007c91";
 var showYesterdayData = 1;
 
-let TempChart = Highcharts.chart("containertemp", {
-  series: [
-    {
-      name: "Yesterday",
-      data: [null],
-      color: tempYesterdayColor,
-      marker: {
-        enabled: false,
-      },
-    },
-    {
-      name: "Today",
-      data: [
-        25, 25, 24, 24, 23, 22, 22, 21, 22, 23, 25, 27, 28, 29, 29, 28, 27, 27,
-        27, 26, 26, 26, 26, 27,
-      ],
-      color: tempTodayColor,
-      marker: {
-        enabled: false,
-      },
-    },
-  ],
+var enabletemperature = 1;
+var enbalehumidity = 1;
+var enablepressure = 1;
 
-  title: {
-    text: "",
-    align: "left",
-  },
-  chart: {
-    height: 200,
-    type: "spline",
-    marginLeft: 0,
-    marginRight: 0,
-    spacingLeft: 0,
-    spacingRight: 0,
-    marginBottom: 35,
-
-    backgroundColor: "rgba(255, 255, 255, 0)",
-  },
-
-  credits: {
-    enabled: false,
-  },
-
-  yAxis: {
-    title: {
-      text: " ",
-    },
-    gridLineColor: "rgba(255, 255, 255, 0.1)",
-    visible: false,
-  },
-
-  xAxis: {
-    gridLineColor: "rgba(255, 255, 255, 0)",
-    lineColor: "rgba(255, 255, 255, 0)",
-    crosshair: true,
-    tickLength: 0,
-    minPadding: 0,
-    maxPadding: 0,
-    // showFirstLabel: false,
-    tickInterval: 5,
-    labels: {
-      format: "{value}:00",
-    },
-  },
-
-  legend: {
-    layout: "vertical",
-    align: "right",
-    verticalAlign: "middle",
-    enabled: false,
-  },
-  tooltip: {
-    backgroundColor: "rgb(42,76,179)",
-    style: {
-      color: "#fefefe",
-    },
-    borderRadius: 3,
-    borderWidth: 0,
-    shared: true,
-  },
-
-  plotOptions: {
-    series: {
-      label: {
-        connectorAllowed: false,
-      },
-      pointStart: 1,
-    },
-    spline: {
-      marker: false,
-    },
-  },
-
-  responsive: {
-    rules: [
+if (enabletemperature) {
+  var TempChart = Highcharts.chart("containertemp", {
+    series: [
       {
-        condition: {
-          maxWidth: 500,
+        name: "Yesterday",
+        data: [null],
+        color: tempYesterdayColor,
+        marker: {
+          enabled: false,
         },
-        chartOptions: {
-          legend: {
-            layout: "horizontal",
-            align: "center",
-            verticalAlign: "bottom",
-          },
+      },
+      {
+        name: "Today",
+        data: [
+          25, 25, 24, 24, 23, 22, 22, 21, 22, 23, 25, 27, 28, 29, 29, 28, 27,
+          27, 27, 26, 26, 26, 26, 27,
+        ],
+        color: tempTodayColor,
+        marker: {
+          enabled: false,
         },
       },
     ],
-  },
-});
 
-let HumidityChart = Highcharts.chart("containerhumd", {
-  series: [
-    {
-      name: "Yesterday",
-      data: [
-        41, 35, 38, 31, 45, 39, 44, 39, 45, 64, 60, 53, 52, 44, 48, 42, 64, 64,
-        71, 69, 74, 68, 60, 54,
-      ],
-      color: humidityYesterdayColor,
-      marker: {
-        enabled: false,
-      },
-    },
-    {
-      name: "Today",
-      data: [
-        75, 68, 52, 56, 71, 63, 65, 64, 76, 60, 54, 68, 55, 49, 68, 59, 38, 43,
-        75, 80, 81, 53, 68, 51,
-      ],
-      color: humidityTodayColor,
-      marker: {
-        enabled: false,
-      },
-    },
-  ],
-
-  title: {
-    text: "",
-    align: "left",
-  },
-  chart: {
-    height: 200,
-    type: "spline",
-    marginLeft: 0,
-    marginRight: 0,
-    spacingLeft: 0,
-    spacingRight: 0,
-    marginBottom: 35,
-
-    backgroundColor: "rgba(255, 255, 255, 0)",
-  },
-
-  credits: {
-    enabled: false,
-  },
-
-  yAxis: {
     title: {
-      text: " ",
+      text: "",
+      align: "left",
     },
-    gridLineColor: "rgba(255, 255, 255, 0.1)",
-    visible: false,
-  },
+    chart: {
+      height: 200,
+      type: "spline",
+      marginLeft: 0,
+      marginRight: 0,
+      spacingLeft: 0,
+      spacingRight: 0,
+      marginBottom: 35,
 
-  xAxis: {
-    gridLineColor: "rgba(255, 255, 255, 0)",
-    lineColor: "rgba(255, 255, 255, 0)",
-    crosshair: true,
-    tickLength: 0,
-    minPadding: 0,
-    maxPadding: 0,
-    // showFirstLabel: false,
-    tickInterval: 5,
-    labels: {
-      format: "{value}:00",
+      backgroundColor: "rgba(255, 255, 255, 0)",
     },
-  },
 
-  legend: {
-    layout: "vertical",
-    align: "right",
-    verticalAlign: "middle",
-    enabled: false,
-  },
-  tooltip: {
-    backgroundColor: "rgb(42,76,179)",
-    style: {
-      color: "#fefefe",
+    credits: {
+      enabled: false,
     },
-    borderRadius: 3,
-    borderWidth: 0,
-    shared: true,
-  },
 
-  plotOptions: {
-    series: {
-      label: {
-        connectorAllowed: false,
+    yAxis: {
+      title: {
+        text: " ",
       },
-      pointStart: 1,
+      gridLineColor: "rgba(255, 255, 255, 0.1)",
+      visible: false,
     },
-    spline: {
-      marker: false,
-    },
-  },
 
-  responsive: {
-    rules: [
-      {
-        condition: {
-          maxWidth: 500,
+    xAxis: {
+      gridLineColor: "rgba(255, 255, 255, 0)",
+      lineColor: "rgba(255, 255, 255, 0)",
+      crosshair: true,
+      tickLength: 0,
+      minPadding: 0,
+      maxPadding: 0,
+      // showFirstLabel: false,
+      tickInterval: 5,
+      labels: {
+        format: "{value}:00",
+      },
+    },
+
+    legend: {
+      layout: "vertical",
+      align: "right",
+      verticalAlign: "middle",
+      enabled: false,
+    },
+    tooltip: {
+      backgroundColor: "rgb(42,76,179)",
+      style: {
+        color: "#fefefe",
+      },
+      borderRadius: 3,
+      borderWidth: 0,
+      shared: true,
+    },
+
+    plotOptions: {
+      series: {
+        label: {
+          connectorAllowed: false,
         },
-        chartOptions: {
-          legend: {
-            layout: "horizontal",
-            align: "center",
-            verticalAlign: "bottom",
+        pointStart: 1,
+      },
+      spline: {
+        marker: false,
+      },
+    },
+
+    responsive: {
+      rules: [
+        {
+          condition: {
+            maxWidth: 500,
+          },
+          chartOptions: {
+            legend: {
+              layout: "horizontal",
+              align: "center",
+              verticalAlign: "bottom",
+            },
           },
         },
-      },
-    ],
-  },
-});
-
-let PressureChart = Highcharts.chart("containerpressure", {
-  series: [
-    {
-      name: "Yesterday",
-      data: [
-        29.68, 30.13, 30.49, 30.45, 30.33, 30.4, 30.39, 30.17, 30.1, 30.33,
-        30.39, 30.11, 30.37, 30.35, 29.95, 30.08, 30.68, 30.52, 30.2, 30.11,
-        29.87, 30.06, 30.01, 30.01,
       ],
-      color: pressureYesterdayColor,
-      marker: {
-        enabled: false,
-      },
     },
-    {
-      name: "Today",
-      data: [
-        30.13, 30.33, 30.13, 30.29, 30.19, 30.22, 30, 30.31, 30.11, 30.47,
-        30.63, 30.19, 29.84, 30.09, 30.4, 30.41, 30.06, 29.87, 29.81, 30.09,
-        30.17, 29.95, 30.37, 30.48,
-      ],
-      color: pressureTodayColor,
-      marker: {
-        enabled: false,
-      },
-    },
-  ],
+  });
 
-  title: {
-    text: "",
-    align: "left",
-  },
-  chart: {
-    height: 200,
-    type: "spline",
-    marginLeft: 0,
-    marginRight: 0,
-    spacingLeft: 0,
-    spacingRight: 0,
-    marginBottom: 35,
-
-    backgroundColor: "rgba(255, 255, 255, 0)",
-  },
-
-  credits: {
-    enabled: false,
-  },
-
-  yAxis: {
-    title: {
-      text: " ",
-    },
-    gridLineColor: "rgba(255, 255, 255, 0.1)",
-    visible: false,
-  },
-
-  xAxis: {
-    gridLineColor: "rgba(255, 255, 255, 0)",
-    lineColor: "rgba(255, 255, 255, 0)",
-    crosshair: true,
-    tickLength: 0,
-    minPadding: 0,
-    maxPadding: 0,
-    // showFirstLabel: false,
-    tickInterval: 5,
-    labels: {
-      format: "{value}:00",
-    },
-  },
-
-  legend: {
-    layout: "vertical",
-    align: "right",
-    verticalAlign: "middle",
-    enabled: false,
-  },
-  tooltip: {
-    backgroundColor: "rgb(42,76,179)",
-    style: {
-      color: "#fefefe",
-    },
-    borderRadius: 3,
-    borderWidth: 0,
-    shared: true,
-  },
-
-  plotOptions: {
-    series: {
-      label: {
-        connectorAllowed: false,
-      },
-      pointStart: 1,
-    },
-    spline: {
-      marker: false,
-    },
-  },
-
-  responsive: {
-    rules: [
-      {
-        condition: {
-          maxWidth: 500,
-        },
-        chartOptions: {
-          legend: {
-            layout: "horizontal",
-            align: "center",
-            verticalAlign: "bottom",
-          },
-        },
-      },
-    ],
-  },
-});
-
-var lastReadTemp = 25;
-var tempUnit = "°C";
-var cardgraphTemp = document.getElementById("cardgraphtemp");
-cardgraphTemp.querySelector("#currentsensortemp").textContent = "Temperature";
+  var cardgraphTemp = document.getElementById("cardgraphtemp");
+  var lastReadTemp = 25;
+  var tempUnit = "°C";
+  cardgraphTemp.querySelector("#currentsensortemp").textContent = "Temperature";
   if (textOrGauge) {
     var tempKnob = pureknob.createKnob(50, 50);
     tempKnob.setProperty("valMin", 0);
@@ -421,66 +194,294 @@ cardgraphTemp.querySelector("#currentsensortemp").textContent = "Temperature";
     elem.appendChild(node);
   } else {
     cardgraphTemp.querySelector("#currentreadtemp").textContent =
-  lastReadTemp + tempUnit;
+      lastReadTemp + tempUnit;
   }
-
-
-var cardgraphHumd = document.getElementById("cardgraphhumd");
-var latestReadHumdity = 50;
-var humdityUnit = "%";
-cardgraphHumd.querySelector("#currentsensorhumd").textContent = "Humidity";
-if (textOrGauge) {
-  var humidityKnob = pureknob.createKnob(50, 50);
-  humidityKnob.setProperty("valMin", 0);
-  humidityKnob.setProperty("valMax", 100);
-  humidityKnob.setProperty("trackWidth", 0.2);
-  humidityKnob.setProperty("textScale", 1.5);
-  humidityKnob.setProperty("readonly", 1);
-  humidityKnob.setProperty("angleStart", -0.75 * 3.1415);
-  humidityKnob.setProperty("angleEnd", 0.75 * 3.1415);
-  humidityKnob.setProperty("colorFG", humidityTodayColor);
-  humidityKnob.setProperty("colorBG", humidityYesterdayColor);
-  humidityKnob.setValue(latestReadHumdity);
-  var node = humidityKnob.node();
-  var elem = document.getElementById("currentreadhumd");
-  elem.appendChild(node);
-} else {
-  cardgraphHumd.querySelector("#currentreadhumd").textContent =
-    latestReadHumdity + humdityUnit;
 }
 
+if (enbalehumidity) {
+  var HumidityChart = Highcharts.chart("containerhumd", {
+    series: [
+      {
+        name: "Yesterday",
+        data: [
+          41, 35, 38, 31, 45, 39, 44, 39, 45, 64, 60, 53, 52, 44, 48, 42, 64,
+          64, 71, 69, 74, 68, 60, 54,
+        ],
+        color: humidityYesterdayColor,
+        marker: {
+          enabled: false,
+        },
+      },
+      {
+        name: "Today",
+        data: [
+          75, 68, 52, 56, 71, 63, 65, 64, 76, 60, 54, 68, 55, 49, 68, 59, 38,
+          43, 75, 80, 81, 53, 68, 51,
+        ],
+        color: humidityTodayColor,
+        marker: {
+          enabled: false,
+        },
+      },
+    ],
 
-var cardgraphPressure = document.getElementById("cardgraphpressure");
-var latestReadPressure = 30;
-var pressureUnit = " kPa";
-cardgraphPressure.querySelector("#currentsensorpressure").textContent =
-  "Air Pressure";
-if (textOrGauge) {
-  var pressureKnob = pureknob.createKnob(50, 50);
-  pressureKnob.setProperty("valMin", 0);
-  pressureKnob.setProperty("valMax", 100);
-  pressureKnob.setProperty("trackWidth", 0.2);
-  pressureKnob.setProperty("textScale", 1.5);
-  pressureKnob.setProperty("readonly", 1);
-  pressureKnob.setProperty("angleStart", -0.75 * 3.1415);
-  pressureKnob.setProperty("angleEnd", 0.75 * 3.1415);
-  pressureKnob.setProperty("colorFG", pressureTodayColor);
-  pressureKnob.setProperty("colorBG", pressureYesterdayColor);
-  pressureKnob.setValue(latestReadPressure);
-  var node = pressureKnob.node();
-  var elem = document.getElementById("currentreadpressure");
-  elem.appendChild(node);
+    title: {
+      text: "",
+      align: "left",
+    },
+    chart: {
+      height: 200,
+      type: "spline",
+      marginLeft: 0,
+      marginRight: 0,
+      spacingLeft: 0,
+      spacingRight: 0,
+      marginBottom: 35,
+
+      backgroundColor: "rgba(255, 255, 255, 0)",
+    },
+
+    credits: {
+      enabled: false,
+    },
+
+    yAxis: {
+      title: {
+        text: " ",
+      },
+      gridLineColor: "rgba(255, 255, 255, 0.1)",
+      visible: false,
+    },
+
+    xAxis: {
+      gridLineColor: "rgba(255, 255, 255, 0)",
+      lineColor: "rgba(255, 255, 255, 0)",
+      crosshair: true,
+      tickLength: 0,
+      minPadding: 0,
+      maxPadding: 0,
+      // showFirstLabel: false,
+      tickInterval: 5,
+      labels: {
+        format: "{value}:00",
+      },
+    },
+
+    legend: {
+      layout: "vertical",
+      align: "right",
+      verticalAlign: "middle",
+      enabled: false,
+    },
+    tooltip: {
+      backgroundColor: "rgb(42,76,179)",
+      style: {
+        color: "#fefefe",
+      },
+      borderRadius: 3,
+      borderWidth: 0,
+      shared: true,
+    },
+
+    plotOptions: {
+      series: {
+        label: {
+          connectorAllowed: false,
+        },
+        pointStart: 1,
+      },
+      spline: {
+        marker: false,
+      },
+    },
+
+    responsive: {
+      rules: [
+        {
+          condition: {
+            maxWidth: 500,
+          },
+          chartOptions: {
+            legend: {
+              layout: "horizontal",
+              align: "center",
+              verticalAlign: "bottom",
+            },
+          },
+        },
+      ],
+    },
+  });
+
+  var cardgraphHumd = document.getElementById("cardgraphhumd");
+  var latestReadHumdity = 50;
+  var humdityUnit = "%";
+  cardgraphHumd.querySelector("#currentsensorhumd").textContent = "Humidity";
+  if (textOrGauge) {
+    var humidityKnob = pureknob.createKnob(50, 50);
+    humidityKnob.setProperty("valMin", 0);
+    humidityKnob.setProperty("valMax", 100);
+    humidityKnob.setProperty("trackWidth", 0.2);
+    humidityKnob.setProperty("textScale", 1.5);
+    humidityKnob.setProperty("readonly", 1);
+    humidityKnob.setProperty("angleStart", -0.75 * 3.1415);
+    humidityKnob.setProperty("angleEnd", 0.75 * 3.1415);
+    humidityKnob.setProperty("colorFG", humidityTodayColor);
+    humidityKnob.setProperty("colorBG", humidityYesterdayColor);
+    humidityKnob.setValue(latestReadHumdity);
+    var node = humidityKnob.node();
+    var elem = document.getElementById("currentreadhumd");
+    elem.appendChild(node);
+  } else {
+    cardgraphHumd.querySelector("#currentreadhumd").textContent =
+      latestReadHumdity + humdityUnit;
+  }
 } else {
-  cardgraphPressure.querySelector("#currentreadpressure").textContent =
-    latestReadPressure + pressureUnit;
+  let cardgraphHumd = document.getElementById("cardhumd");
+  cardgraphHumd.style.display = "none";
 }
+if (enablepressure) {
+  var PressureChart = Highcharts.chart("containerpressure", {
+    series: [
+      {
+        name: "Yesterday",
+        data: [
+          29.68, 30.13, 30.49, 30.45, 30.33, 30.4, 30.39, 30.17, 30.1, 30.33,
+          30.39, 30.11, 30.37, 30.35, 29.95, 30.08, 30.68, 30.52, 30.2, 30.11,
+          29.87, 30.06, 30.01, 30.01,
+        ],
+        color: pressureYesterdayColor,
+        marker: {
+          enabled: false,
+        },
+      },
+      {
+        name: "Today",
+        data: [
+          30.13, 30.33, 30.13, 30.29, 30.19, 30.22, 30, 30.31, 30.11, 30.47,
+          30.63, 30.19, 29.84, 30.09, 30.4, 30.41, 30.06, 29.87, 29.81, 30.09,
+          30.17, 29.95, 30.37, 30.48,
+        ],
+        color: pressureTodayColor,
+        marker: {
+          enabled: false,
+        },
+      },
+    ],
 
+    title: {
+      text: "",
+      align: "left",
+    },
+    chart: {
+      height: 200,
+      type: "spline",
+      marginLeft: 0,
+      marginRight: 0,
+      spacingLeft: 0,
+      spacingRight: 0,
+      marginBottom: 35,
 
+      backgroundColor: "rgba(255, 255, 255, 0)",
+    },
 
+    credits: {
+      enabled: false,
+    },
 
+    yAxis: {
+      title: {
+        text: " ",
+      },
+      gridLineColor: "rgba(255, 255, 255, 0.1)",
+      visible: false,
+    },
 
+    xAxis: {
+      gridLineColor: "rgba(255, 255, 255, 0)",
+      lineColor: "rgba(255, 255, 255, 0)",
+      crosshair: true,
+      tickLength: 0,
+      minPadding: 0,
+      maxPadding: 0,
+      // showFirstLabel: false,
+      tickInterval: 5,
+      labels: {
+        format: "{value}:00",
+      },
+    },
 
+    legend: {
+      layout: "vertical",
+      align: "right",
+      verticalAlign: "middle",
+      enabled: false,
+    },
+    tooltip: {
+      backgroundColor: "rgb(42,76,179)",
+      style: {
+        color: "#fefefe",
+      },
+      borderRadius: 3,
+      borderWidth: 0,
+      shared: true,
+    },
 
+    plotOptions: {
+      series: {
+        label: {
+          connectorAllowed: false,
+        },
+        pointStart: 1,
+      },
+      spline: {
+        marker: false,
+      },
+    },
+
+    responsive: {
+      rules: [
+        {
+          condition: {
+            maxWidth: 500,
+          },
+          chartOptions: {
+            legend: {
+              layout: "horizontal",
+              align: "center",
+              verticalAlign: "bottom",
+            },
+          },
+        },
+      ],
+    },
+  });
+
+  var cardgraphPressure = document.getElementById("cardgraphpressure");
+  var latestReadPressure = 30;
+  var pressureUnit = " kPa";
+  cardgraphPressure.querySelector("#currentsensorpressure").textContent =
+    "Air Pressure";
+  if (textOrGauge) {
+    var pressureKnob = pureknob.createKnob(50, 50);
+    pressureKnob.setProperty("valMin", 0);
+    pressureKnob.setProperty("valMax", 100);
+    pressureKnob.setProperty("trackWidth", 0.2);
+    pressureKnob.setProperty("textScale", 1.5);
+    pressureKnob.setProperty("readonly", 1);
+    pressureKnob.setProperty("angleStart", -0.75 * 3.1415);
+    pressureKnob.setProperty("angleEnd", 0.75 * 3.1415);
+    pressureKnob.setProperty("colorFG", pressureTodayColor);
+    pressureKnob.setProperty("colorBG", pressureYesterdayColor);
+    pressureKnob.setValue(latestReadPressure);
+    var node = pressureKnob.node();
+    var elem = document.getElementById("currentreadpressure");
+    elem.appendChild(node);
+  } else {
+    cardgraphPressure.querySelector("#currentreadpressure").textContent =
+      latestReadPressure + pressureUnit;
+  }
+}
 
 // Chart Update
 var delayInMilliseconds = 3000; //1 second
@@ -506,25 +507,60 @@ setTimeout(function () {
   });
 }, delayInMilliseconds);
 
-
-
-
-
 //Theme Changer
-function changeTheme(checkboxElem) {
-  var checkboxElem = document.getElementById("darklightmodecheckbox");
 
-  if (checkboxElem.checked) {
-    console.log("ON");
+// document.getElementById("Settingsbut").click();
+
+//SET COOKIE
+
+if (getCookie("lightdarkmode")) {
+  var lightmode = getCookie("lightdarkmode");
+  var lightmodetoggle = false;
+} else {
+  var lightmode = false;
+  var lightmodetoggle = true;
+  setCookie("lightdarkmode", false, 365);
+}
+
+var themecolor = "#2a4bb3";
+const rootelem = document.documentElement;
+
+if (lightmode) {
+  rootelem.style.setProperty("--background-color", "#d1dae0");
+  rootelem.style.setProperty("--text-color", "#002131");
+  rootelem.style.setProperty("--theme-color", themecolor + "61");
+  rootelem.style.setProperty("--level-one", "#e7ecee");
+  rootelem.style.setProperty("--level-two", "#fdfdfd");
+  rootelem.style.setProperty("--level-three", "#385463");
+
+  $("#darkmode i").addClass("fa-sun").removeClass("fa-moon");
+  setCookie("lightdarkmode", true, 365);
+}
+
+function toggleTheme() {
+  if (lightmodetoggle) {
+    rootelem.style.setProperty("--background-color", "#d1dae0");
+    rootelem.style.setProperty("--text-color", "#002131");
+    rootelem.style.setProperty("--theme-color", themecolor + "61");
+    rootelem.style.setProperty("--level-one", "#e7ecee");
+    rootelem.style.setProperty("--level-two", "#fdfdfd");
+    rootelem.style.setProperty("--level-three", "#385463");
+    setCookie("lightdarkmode", true, 365);
+
+    $("#darkmode i").addClass("fa-sun").removeClass("fa-moon");
+    lightmodetoggle = false;
   } else {
-    console.log("OFF");
+    rootelem.style.setProperty("--background-color", "#13131A");
+    rootelem.style.setProperty("--text-color", "#FEFEFE");
+    rootelem.style.setProperty("--theme-color", themecolor);
+    rootelem.style.setProperty("--level-one", "#1C1C24");
+    rootelem.style.setProperty("--level-two", "#464555");
+    rootelem.style.setProperty("--level-three", "#aba9bc");
+    $("#darkmode i").addClass("fa-moon").removeClass("fa-sun");
+    setCookie("lightdarkmode", false, 365);
+
+    lightmodetoggle = true;
   }
 }
 
-
-
-
-//SET COOKIE
-// setCookie("user_email", "suck ma pp", 30); //set "user_email" cookie, expires in 30 days
-// var userEmail = getCookie("user_email"); //"bobthegreat@gmail.com"
-// console.log(userEmail);
+//Cookies And Settings

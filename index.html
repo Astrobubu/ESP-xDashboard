@@ -72,24 +72,25 @@
       <div id="Dashboard" class="tabs">
         <h2>Dashboard</h2>
         <h4>Overview on all the connected sensors available at the moment</h4>
-
         <div id="cardcontainer" class="grid">
-          <div class="card">
-            <!-- Custom information -->
-            <div class="about" id="cardgraphtemp">
-              <!-- <h3>Temprature</h3> -->
-              <h3 class="alignleft" id="currentsensortemp"></h3>
-              <h3 class="alignright" id="currentreadtemp"></h3>
-              <br />
-              <h4>24 hours</h4>
-              <div class="legends"></div>
-            </div>
+          <div id="cardtemp">
+            <div class="card">
+              <!-- Custom information -->
+              <div class="about" id="cardgraphtemp">
+                <!-- <h3>Temprature</h3> -->
+                <h3 class="alignleft" id="currentsensortemp"></h3>
+                <h3 class="alignright" id="currentreadtemp"></h3>
+                <br />
+                <h4>24 hours</h4>
+                <div class="legends"></div>
+              </div>
 
-            <figure class="highcharts-figure">
-              <div id="containertemp"></div>
-            </figure>
+              <figure class="highcharts-figure">
+                <div id="containertemp"></div>
+              </figure>
+            </div>
           </div>
-          <div id="cardcontainer" class="grid">
+          <div id="cardhumd">
             <div class="card">
               <!-- Custom information -->
               <div class="about" id="cardgraphhumd">
@@ -107,7 +108,7 @@
               <!-- <canvas id="line-chart"></canvas> -->
             </div>
           </div>
-          <div id="cardcontainer" class="grid">
+          <div id="cardpress">
             <div class="card">
               <!-- Custom information -->
               <div class="about" id="cardgraphpressure">
@@ -135,21 +136,14 @@
       <div id="Settings" class="tabs" style="display: none">
         <h2>Settings</h2>
         <h4>Manage your setup</h4>
-
-        <div class="btn-container">
-          <i id="darklightmode" class="fa fa-sun-o" aria-hidden="true"></i>
-            <label class="switch btn-color-mode-switch">
-                  <input id="darklightmodecheckbox" type="checkbox" name="color_mode" id="color_mode" onchange="changeTheme()" value="1">
-                  <label for="color_mode"  class="btn-color-mode-switch-inner"></label>
-              </label>
-            <i id="darklightmode"class="fa fa-moon-o" aria-hidden="true"></i>
-            
+        <div id="config">
+          <p>Dark/Light Mode:</p>
+          <button id="darkmode" class="btn" onclick="toggleTheme()">
+            <i id="darkmodeicon" class="fa fa-moon"></i>
+          </button>
         </div>
-         
       </div>
-        </label>
-        
-      </div>
+
       <div id="Forcast" class="tabs" style="display: none">
         <h2>Forcast</h2>
         <h4>
