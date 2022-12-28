@@ -1,11 +1,3 @@
-// Get the root element
-
-// Create a function for setting a variable value
-function myFunction_set() {
-  var r = document.querySelector(":root");
-  // Set the value of variable --blue to another value (in this case "lightblue")
-  r.style.setProperty("--text-color", "lightblue");
-}
 
 function setCookie(name, value, days) {
   var expires = "";
@@ -50,7 +42,7 @@ function rgb2hex(rgb){
    ("0" + parseInt(rgb[1],10).toString(16)).slice(-2) +
    ("0" + parseInt(rgb[2],10).toString(16)).slice(-2) +
    ("0" + parseInt(rgb[3],10).toString(16)).slice(-2) : '';
- }
+}
 
 
 var textOrGauge = 1;
@@ -644,3 +636,24 @@ function mainAccentChanger(id){
 
 //Cookies And Settings
 
+$(".toggleSlideThemeButton, .toggleSlideTheme h3").on("click", function() {
+
+  $("#themeSelector").slideToggle();
+  // $this.toggleClass("fa-chevron-up")
+  $(".toggleSlideThemeButton .fa-chevron-down, .toggleSlideThemeButton .fa-chevron-up").toggleClass("fa-chevron-down fa-chevron-up");
+});
+
+$(".toggleSlideSensorButton, .toggleSlideSensor h3").on("click", function() {
+
+    $("#sensorConfig").slideToggle();
+    // $this.toggleClass("fa-chevron-up")
+    $(".toggleSlideSensorButton .fa-chevron-down, .toggleSlideSensorButton .fa-chevron-up").toggleClass("fa-chevron-down fa-chevron-up");
+});
+
+$(".toggleSlideTheme h3").click();
+
+$(".toggleSlideSensor h3").click();
+
+// document.getElementsByClassName("toggleSlideTheme")[0].click();
+
+// document.getElementsByClassName("toggleSlideSensor")[0].click();

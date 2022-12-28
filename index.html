@@ -13,6 +13,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/series-label.js"></script>
 
@@ -22,10 +23,9 @@
       src="  https://cdn.jsdelivr.net/npm/chartjs-plugin-crosshair@1.2.0"
       crossorigin="anonymous"
     ></script>
-
     <script
-      src="https://code.jquery.com/jquery-3.6.1.slim.min.js"
-      integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA="
+      src="https://code.jquery.com/jquery-3.6.3.js"
+      integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
       crossorigin="anonymous"
     ></script>
     <link href="https://fonts.googleapis.com/css?family=Exo" rel="stylesheet" />
@@ -136,6 +136,13 @@
       <div id="Settings" class="tabs" style="display: none">
         <h2>Settings</h2>
         <h4>Manage your setup</h4>
+        <!-- <hr class="solid"> -->
+        <!-- <br /> -->
+        <div id="toggleSlide" class="toggleSlideTheme">
+          <button id="toggleButton" class="toggleSlideThemeButton" type="button"><i class="fa-solid fa-chevron-up"></i></button>
+          <h3>Colors</h3>
+        </div>
+        <div id="themeSelector">
         <div id="darklightswtich">
           <p>Dark/Light Mode:</p>
           <button id="darkmode" class="btn" onclick="toggleTheme()">
@@ -144,12 +151,125 @@
         </div>
         <div>
           <p>Theme Color:</p>
-          <button class="btn mainThemeSelector" id="blueTheme" onclick="mainAccentChanger('blueTheme')" ></button>
-          <button class="btn mainThemeSelector" id="redTheme" onclick="mainAccentChanger('redTheme')" ></button>
-          <button class="btn mainThemeSelector" id="cyanTheme" onclick="mainAccentChanger('cyanTheme')"></button>
-          <button class="btn mainThemeSelector" id="greenTheme" onclick="mainAccentChanger('greenTheme')"></button>
-          <button class="btn mainThemeSelector" id="purpleTheme" onclick="mainAccentChanger('purpleTheme')"></button>
-          <button class="btn mainThemeSelector" id="greyTheme" onclick="mainAccentChanger('greyTheme')"></button>
+          <button
+            class="btn mainThemeSelector"
+            id="blueTheme"
+            onclick="mainAccentChanger('blueTheme')"
+          ></button>
+          <button
+            class="btn mainThemeSelector"
+            id="redTheme"
+            onclick="mainAccentChanger('redTheme')"
+          ></button>
+          <button
+            class="btn mainThemeSelector"
+            id="cyanTheme"
+            onclick="mainAccentChanger('cyanTheme')"
+          ></button>
+          <button
+            class="btn mainThemeSelector"
+            id="greenTheme"
+            onclick="mainAccentChanger('greenTheme')"
+          ></button>
+          <button
+            class="btn mainThemeSelector"
+            id="purpleTheme"
+            onclick="mainAccentChanger('purpleTheme')"
+          ></button>
+          <button
+            class="btn mainThemeSelector"
+            id="greyTheme"
+            onclick="mainAccentChanger('greyTheme')"
+          ></button>
+        </div>
+      </div>
+        <!-- <div>
+          <p>Sensor Color:</p>
+          <input type="color" id="colorSelector" name="head" value="#e66465">
+        </div> -->
+        <br />
+        <div id="toggleSlide" class="toggleSlideSensor">
+          <button id="toggleButton" class="toggleSlideSensorButton" type="button"><i class="fa-solid fa-chevron-up"></i></button>
+          <h3>Connected Sensors</h3>
+        </div>
+
+        <div id="sensorConfig">
+          <!-- <input type="checkbox" name="tempsensor" value="">
+          <p>Temprateure Sensor</p>
+          <label for="tempsensor">Temprateure Sensor</label> -->
+          <label class="label">
+            <input type="checkbox" value="text" />Temprateure Sensor
+          </label>
+          <br />
+          <!-- <br>
+          <input type="checkbox">
+          <p>Humidity Sensor</p> -->
+          <label class="label">
+            <input type="checkbox" value="text" />Humidity Sensor
+          </label>
+          <br />
+          <!-- <br>
+          <input type="checkbox">
+          <p>Pressure Sensor</p> -->
+          <label class="label">
+            <input type="checkbox" value="text" />Pressure Sensor
+          </label>
+          <br />
+          <!-- <br>
+          <input type="checkbox">
+          <p>Lightning Sensor</p> -->
+          <label class="label">
+            <input type="checkbox" value="text" />Lightning Sensor
+          </label>
+          <br />
+          <!-- <br>
+          <input type="checkbox">
+          <p>Air Quality Sensor</p> -->
+          <label class="label">
+            <input type="checkbox" value="text" />Air Quality Sensor
+          </label>
+          <br />
+          <!-- <br>
+          <input type="checkbox">
+          <p>Wind Sensor</p> -->
+          <label class="label">
+            <input type="checkbox" value="text" />Wind Sensor
+          </label>
+          <br />
+          <!-- <br>
+          <input type="checkbox">
+          <p>Ultra Violet Sensor</p> -->
+          <label class="label">
+            <input type="checkbox" value="text" />Ultra Violet Sensor
+          </label>
+          <br />
+          <!-- <br>
+          <input type="checkbox">
+          <p>Lux Sensor</p> -->
+          <label class="label">
+            <input type="checkbox" value="text" />Lux Sensor
+          </label>
+          <br />
+          <!-- <br>
+          <input type="checkbox">
+          <p>Battery Sensor</p> -->
+          <label class="label">
+            <input type="checkbox" value="text" />Battery Sensor
+          </label>
+          <br />
+          <!-- <br>
+          <input type="checkbox">
+          <p>Cloud Sensor</p> -->
+          <label class="label">
+            <input type="checkbox" value="text" />Cloud Sensor
+          </label>
+          <br />
+          <!-- <br>
+          <input type="checkbox">
+          <p>Ground Sensor</p> -->
+          <label class="label">
+            <input type="checkbox" value="text" />Ground Sensor
+          </label>
         </div>
       </div>
 
