@@ -424,4 +424,5 @@ input[type="color"]::-webkit-color-swatch {
   -moz-user-select: none; /* Firefox all */
   -ms-user-select: none; /* IE 10+ */
   user-select: none;
+  padding-left: 1em;
 }

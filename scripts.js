@@ -199,8 +199,6 @@ const rootelem = document.documentElement;
 
 var textOrGauge = localStorage.getItem("textOrGauge");
 var showYesterdayData = localStorage.getItem("showYesterdayGraph");
-console.log(textOrGauge);
-console.log(showYesterdayData);
 
 checkStateAndTickCheckbox("textOrGauge");
 checkStateAndTickCheckbox("showYesterdayGraph");
@@ -705,8 +703,6 @@ var delayInMilliseconds = 3000; //1 second
 
 //Theme Changer
 
-document.getElementById("Settingsbut").click();
-
 var blueTheme = document.getElementById("blueTheme");
 var redTheme = document.getElementById("redTheme");
 var cyanTheme = document.getElementById("cyanTheme");
@@ -785,6 +781,10 @@ $(".toggleSlideUIButton, .toggleSlideUI h3").on("click", function () {
 $(".toggleSlideTheme h3").click();
 
 $(".toggleSlideSensor h3").click();
+
+$(".toggleSlideUI h3").click();
+
+$("#Settingsbut").click();
 
 
 // document.getElementsByClassName("toggleSlideTheme")[0].click();
