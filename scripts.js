@@ -1,25 +1,3 @@
-
-function setCookie(name, value, days) {
-  var expires = "";
-  if (days) {
-    var date = new Date();
-    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-    expires = "; expires=" + date.toUTCString();
-  }
-  document.cookie = name + "=" + (value || "") + expires + "; path=/";
-}
-
-function getCookie(name) {
-  var nameEQ = name + "=";
-  var ca = document.cookie.split(";");
-  for (var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == " ") c = c.substring(1, c.length);
-    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-  }
-  return null;
-}
-
 function openTab(tabname) {
   var i;
   var x = document.getElementsByClassName("tabs");
@@ -36,16 +14,196 @@ function openTab(tabname) {
     "var(--theme-color)";
 }
 
-function rgb2hex(rgb){
-  rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
-  return (rgb && rgb.length === 4) ? "#" +
-   ("0" + parseInt(rgb[1],10).toString(16)).slice(-2) +
-   ("0" + parseInt(rgb[2],10).toString(16)).slice(-2) +
-   ("0" + parseInt(rgb[3],10).toString(16)).slice(-2) : '';
+function rgb2hex(rgb) {
+  rgb = rgb.match(
+    /^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i
+  );
+  return rgb && rgb.length === 4
+    ? "#" +
+        ("0" + parseInt(rgb[1], 10).toString(16)).slice(-2) +
+        ("0" + parseInt(rgb[2], 10).toString(16)).slice(-2) +
+        ("0" + parseInt(rgb[3], 10).toString(16)).slice(-2)
+    : "";
+}
+
+function toggleTheme() {
+  if (lightmodetoggle) {
+    rootelem.style.setProperty("--background-color", "#d1dae0");
+    rootelem.style.setProperty("--text-color", "#002131");
+    if (`${themecolor.length}` == 7) {
+      rootelem.style.setProperty("--theme-color", themecolor + "61");
+    } else {
+      rootelem.style.setProperty("--theme-color", themecolor);
+    }
+    rootelem.style.setProperty("--level-one", "#e7ecee");
+    rootelem.style.setProperty("--level-two", "#fdfdfd");
+    rootelem.style.setProperty("--level-three", "#385463");
+    blueTheme.style.setProperty("background-color", "#2a4bb3" + "61");
+    redTheme.style.setProperty("background-color", "#A8092E" + "61");
+    cyanTheme.style.setProperty("background-color", "#6CA7A4" + "61");
+    greenTheme.style.setProperty("background-color", "#006B43" + "61");
+    purpleTheme.style.setProperty("background-color", "#6551B6" + "61");
+    greyTheme.style.setProperty("background-color", "#464555" + "61");
+    localStorage.setItem("lightdarkmode", 1);
+
+    $("#darkmode i").addClass("fa-sun").removeClass("fa-moon");
+    lightmodetoggle = 0;
+  } else {
+    rootelem.style.setProperty("--background-color", "#13131A");
+    rootelem.style.setProperty("--text-color", "#FEFEFE");
+    if (`${themecolor.length}` == 7) {
+      rootelem.style.setProperty("--theme-color", themecolor);
+    } else {
+      themecolor=themecolor.slice(0, -2);
+      rootelem.style.setProperty("--theme-color", themecolor);
+    }
+    rootelem.style.setProperty("--level-one", "#1C1C24");
+    rootelem.style.setProperty("--level-two", "#464555");
+    rootelem.style.setProperty("--level-three", "#aba9bc");
+    blueTheme.style.setProperty("background-color", "#2a4bb3");
+    redTheme.style.setProperty("background-color", "#A8092E");
+    cyanTheme.style.setProperty("background-color", "#6CA7A4");
+    greenTheme.style.setProperty("background-color", "#006B43");
+    purpleTheme.style.setProperty("background-color", "#6551B6");
+    greyTheme.style.setProperty("background-color", "#464555");
+    $("#darkmode i").addClass("fa-moon").removeClass("fa-sun");
+    localStorage.setItem("lightdarkmode", 0);
+
+    lightmodetoggle = 1;
+  }
+}
+
+function mainAccentChanger(id) {
+  let accentSelector = document.getElementById(id);
+  let accentColor = accentSelector.style.backgroundColor;
+  if (lightmodetoggle) {
+    rootelem.style.setProperty("--theme-color", rgb2hex(accentColor));
+    themecolor = rgb2hex(accentColor);
+    localStorage.setItem("themeColorCookie", themecolor);
+  } else {
+    // if {${rgb2hex(accentColor).length}==7}
+    // console.log(${(rgb2hex(accentColor)).length});
+    rootelem.style.setProperty("--theme-color", rgb2hex(accentColor) + "61");
+    themecolor = rgb2hex(accentColor) + "61";
+    localStorage.setItem("themeColorCookie", themecolor);
+  }
+  // console.log(rgb2hex(accentColor));
+}
+
+function checkboxChangeVariable(element) {
+  if ($(element).attr("id") == "temprateureSensorCheckbox") {
+    if (localStorage.getItem("temprateureSensorCheckbox") == 1) {
+      localStorage.setItem("temprateureSensorCheckbox", 0);
+    } else {
+      localStorage.setItem("temprateureSensorCheckbox", 1);
+    }
+  }
+  if ($(element).attr("id") == "humiditySensorCheckbox") {
+    if (localStorage.getItem("humiditySensorCheckbox") == 1) {
+      localStorage.setItem("humiditySensorCheckbox", 0);
+    } else {
+      localStorage.setItem("humiditySensorCheckbox", 1);
+    }
+  }
+  if ($(element).attr("id") == "pressureSensorCheckbox") {
+    if (localStorage.getItem("pressureSensorCheckbox") == 1) {
+      localStorage.setItem("pressureSensorCheckbox", 0);
+    } else {
+      localStorage.setItem("pressureSensorCheckbox", 1);
+    }
+  }
+  if ($(element).attr("id") == "lightningSensorCheckbox") {
+    if (localStorage.getItem("lightningSensorCheckbox") == 1) {
+      localStorage.setItem("lightningSensorCheckbox", 0);
+    } else {
+      localStorage.setItem("lightningSensorCheckbox", 1);
+    }
+  }
+  if ($(element).attr("id") == "airQualitySensorCheckbox") {
+    if (localStorage.getItem("airQualitySensorCheckbox") == 1) {
+      localStorage.setItem("airQualitySensorCheckbox", 0);
+    } else {
+      localStorage.setItem("airQualitySensorCheckbox", 1);
+    }
+  }
+  if ($(element).attr("id") == "windSensorCheckbox") {
+    if (localStorage.getItem("windSensorCheckbox") == 1) {
+      localStorage.setItem("windSensorCheckbox", 0);
+    } else {
+      localStorage.setItem("windSensorCheckbox", 1);
+    }
+  }
+  if ($(element).attr("id") == "ultraVioletSensorCheckbox") {
+    if (localStorage.getItem("ultraVioletSensorCheckbox") == 1) {
+      localStorage.setItem("ultraVioletSensorCheckbox", 0);
+    } else {
+      localStorage.setItem("ultraVioletSensorCheckbox", 1);
+    }
+  }
+  if ($(element).attr("id") == "luxSensorCheckbox") {
+    if (localStorage.getItem("luxSensorCheckbox") == 1) {
+      localStorage.setItem("luxSensorCheckbox", 0);
+    } else {
+      localStorage.setItem("luxSensorCheckbox", 1);
+    }
+  }
+  if ($(element).attr("id") == "batterySensorCheckbox") {
+    if (localStorage.getItem("batterySensorCheckbox") == 1) {
+      localStorage.setItem("batterySensorCheckbox", 0);
+    } else {
+      localStorage.setItem("batterySensorCheckbox", 1);
+    }
+  }
+  if ($(element).attr("id") == "cloudSensorCheckbox") {
+    if (localStorage.getItem("cloudSensorCheckbox") == 1) {
+      localStorage.setItem("cloudSensorCheckbox", 0);
+    } else {
+      localStorage.setItem("cloudSensorCheckbox", 1);
+    }
+  }
+  if ($(element).attr("id") == "groundSensorCheckbox") {
+    if (localStorage.getItem("groundSensorCheckbox") == 1) {
+      localStorage.setItem("groundSensorCheckbox", 0);
+    } else {
+      localStorage.setItem("groundSensorCheckbox", 1);
+    }
+  }
+  if ($(element).attr("id") == "textOrGauge") {
+    if (localStorage.getItem("textOrGauge") == 1) {
+      localStorage.setItem("textOrGauge", 0);
+    } else {
+      localStorage.setItem("textOrGauge", 1);
+    }
+  }
+  if ($(element).attr("id") == "showYesterdayGraph") {
+    if (localStorage.getItem("showYesterdayGraph") == 1) {
+      localStorage.setItem("showYesterdayGraph", 0);
+    } else {
+      localStorage.setItem("showYesterdayGraph", 1);
+    }
+  }
+}
+
+function checkStateAndTickCheckbox(id){
+  if (localStorage.getItem(id)==1){
+    $("#"+id).prop('checked', true);
+  }
+  else {
+    $("#"+id).prop('checked', false);
+  }
+  
 }
 
 
-var textOrGauge = 1;
+const rootelem = document.documentElement;
+
+var textOrGauge = localStorage.getItem("textOrGauge");
+var showYesterdayData = localStorage.getItem("showYesterdayGraph");
+console.log(textOrGauge);
+console.log(showYesterdayData);
+
+checkStateAndTickCheckbox("textOrGauge");
+checkStateAndTickCheckbox("showYesterdayGraph");
 
 var todaycolor = "#FF55B8";
 var yestercolor = "#2a4bb3";
@@ -56,29 +214,39 @@ var humidityTodayColor = "#6ab7ff";
 var humidityYesterdayColor = "#005cb2";
 var pressureTodayColor = "#5ddef4";
 var pressureYesterdayColor = "#007c91";
-var showYesterdayData = 1;
 
-var enabletemperature = 1;
-var enbalehumidity = 1;
-var enablepressure = 1;
+var enableTemperature = localStorage.getItem("temprateureSensorCheckbox");
+var enbaleHumidity = localStorage.getItem("humiditySensorCheckbox");
+var enablePressure = localStorage.getItem("pressureSensorCheckbox");
+var enableLightning = localStorage.getItem("lightningSensorCheckbox");
+var enableAirQuality = localStorage.getItem("airQualitySensorCheckbox");
+var enableWind = localStorage.getItem("windSensorCheckbox");
+var enableUltraViolet = localStorage.getItem("ultraVioletSensorCheckbox");
+var enablLux = localStorage.getItem("luxSensorCheckbox");
+var enableBattery = localStorage.getItem("batterySensorCheckbox");
+var enableCloud = localStorage.getItem("cloudSensorCheckbox");
+var enableGround = localStorage.getItem("groundSensorCheckbox");
 
-if (getCookie("lightdarkmode")) {
-  var lightmode = getCookie("lightdarkmode");
-  var lightmodetoggle = false;
+if (localStorage.getItem("lightdarkmode") == 1) {
+  var lightmode = localStorage.getItem("lightdarkmode");
+  var lightmodetoggle = 0;
 } else {
-  var lightmode = false;
-  var lightmodetoggle = true;
-  setCookie("lightdarkmode", false, 365);
-};
-
-if (getCookie("themeColorCookie")){
-  var themecolor = getCookie("themeColorCookie");
-} else{
-  setCookie("themeColorCookie", "#2a4bb3", 365);
-  var themecolor = "#2a4bb3";
+  var lightmode = 0;
+  var lightmodetoggle = 1;
+  localStorage.setItem("lightdarkmode", 0);
 }
 
-if (enabletemperature) {
+if (localStorage.getItem("themeColorCookie")) {
+  var themecolor = localStorage.getItem("themeColorCookie");
+} else {
+  localStorage.setItem("themeColorCookie", "#2a4bb3");
+  var themecolor = "#2a4bb3";
+}
+// console.log(localStorage.getItem("themeColorCookie"))
+
+if (enableTemperature==1) {
+  $("#temprateureSensorCheckbox").prop('checked', true);
+
   var TempChart = Highcharts.chart("containertemp", {
     series: [
       {
@@ -194,7 +362,7 @@ if (enabletemperature) {
   var lastReadTemp = 25;
   var tempUnit = "°C";
   cardgraphTemp.querySelector("#currentsensortemp").textContent = "Temperature";
-  if (textOrGauge) {
+  if (textOrGauge==0) {
     var tempKnob = pureknob.createKnob(50, 50);
     tempKnob.setProperty("valMin", 0);
     tempKnob.setProperty("valMax", 100);
@@ -218,7 +386,9 @@ if (enabletemperature) {
   cardgraphTemp.style.display = "none";
 }
 
-if (enbalehumidity) {
+if (enbaleHumidity==1) {
+  $("#humiditySensorCheckbox").prop('checked', true);
+
   var HumidityChart = Highcharts.chart("containerhumd", {
     series: [
       {
@@ -294,7 +464,7 @@ if (enbalehumidity) {
       enabled: false,
     },
     tooltip: {
-      backgroundColor:themecolor,
+      backgroundColor: themecolor,
       style: {
         color: "#fefefe",
       },
@@ -337,7 +507,7 @@ if (enbalehumidity) {
   var latestReadHumdity = 50;
   var humdityUnit = "%";
   cardgraphHumd.querySelector("#currentsensorhumd").textContent = "Humidity";
-  if (textOrGauge) {
+  if (textOrGauge==0) {
     var humidityKnob = pureknob.createKnob(50, 50);
     humidityKnob.setProperty("valMin", 0);
     humidityKnob.setProperty("valMax", 100);
@@ -361,7 +531,9 @@ if (enbalehumidity) {
   cardgraphHumd.style.display = "none";
 }
 
-if (enablepressure) {
+if (enablePressure==1) {
+  $("#pressureSensorCheckbox").prop('checked', true);
+
   var PressureChart = Highcharts.chart("containerpressure", {
     series: [
       {
@@ -483,7 +655,7 @@ if (enablepressure) {
   var pressureUnit = " kPa";
   cardgraphPressure.querySelector("#currentsensorpressure").textContent =
     "Air Pressure";
-  if (textOrGauge) {
+  if (textOrGauge==0) {
     var pressureKnob = pureknob.createKnob(50, 50);
     pressureKnob.setProperty("valMin", 0);
     pressureKnob.setProperty("valMax", 100);
@@ -502,34 +674,34 @@ if (enablepressure) {
     cardgraphPressure.querySelector("#currentreadpressure").textContent =
       latestReadPressure + pressureUnit;
   }
-}else {
+} else {
   let cardgraphPress = document.getElementById("cardpress");
   cardgraphPress.style.display = "none";
-};
+}
 
 // Chart Update
 var delayInMilliseconds = 3000; //1 second
 
-setTimeout(function () {
-  TempChart.update({
-    series: [
-      {
-        name: "Yesterday",
-        data: [
-          25, 25, 24, 24, 23, 22, 22, 21, 22, 23, 25, 27, 28, 29, 29, 28, 27,
-          27, 27, 26, 26, 26, 26, 27,
-        ],
-      },
-      {
-        name: "Today",
-        data: [
-          25, 25, 22, 24, 22, 22, 22, 21, 22, 23, 22, 27, 22, 29, 29, 22, 27,
-          27, 27, 26, 26, 26, 26, 27,
-        ],
-      },
-    ],
-  });
-}, delayInMilliseconds);
+// setTimeout(function () {
+//   TempChart.update({
+//     series: [
+//       {
+//         name: "Yesterday",
+//         data: [
+//           25, 25, 24, 24, 23, 22, 22, 21, 22, 23, 25, 27, 28, 29, 29, 28, 27,
+//           27, 27, 26, 26, 26, 26, 27,
+//         ],
+//       },
+//       {
+//         name: "Today",
+//         data: [
+//           25, 25, 22, 24, 22, 22, 22, 21, 22, 23, 22, 27, 22, 29, 29, 22, 27,
+//           27, 27, 26, 26, 26, 26, 27,
+//         ],
+//       },
+//     ],
+//   });
+// }, delayInMilliseconds);
 
 //Theme Changer
 
@@ -542,30 +714,34 @@ var greenTheme = document.getElementById("greenTheme");
 var purpleTheme = document.getElementById("purpleTheme");
 var greyTheme = document.getElementById("greyTheme");
 
-
-
-
-const rootelem = document.documentElement;
-
 if (lightmode) {
   rootelem.style.setProperty("--background-color", "#d1dae0");
   rootelem.style.setProperty("--text-color", "#002131");
-  rootelem.style.setProperty("--theme-color", themecolor + "61");
+  if (`${themecolor.length}` == 7) {
+    rootelem.style.setProperty("--theme-color", themecolor + "61");
+  } else {
+    rootelem.style.setProperty("--theme-color", themecolor);
+  }
   rootelem.style.setProperty("--level-one", "#e7ecee");
   rootelem.style.setProperty("--level-two", "#fdfdfd");
   rootelem.style.setProperty("--level-three", "#385463");
-  blueTheme.style.setProperty("background-color", "#2a4bb3"+ "61");
-  redTheme.style.setProperty("background-color", "#A8092E"+ "61");
-  cyanTheme.style.setProperty("background-color", "#6CA7A4"+ "61");
-  greenTheme.style.setProperty("background-color", "#006B43"+ "61");
-  purpleTheme.style.setProperty("background-color", "#6551B6"+ "61");
-  greyTheme.style.setProperty("background-color", "#464555"+ "61");
+  blueTheme.style.setProperty("background-color", "#2a4bb3" + "61");
+  redTheme.style.setProperty("background-color", "#A8092E" + "61");
+  cyanTheme.style.setProperty("background-color", "#6CA7A4" + "61");
+  greenTheme.style.setProperty("background-color", "#006B43" + "61");
+  purpleTheme.style.setProperty("background-color", "#6551B6" + "61");
+  greyTheme.style.setProperty("background-color", "#464555" + "61");
   $("#darkmode i").addClass("fa-sun").removeClass("fa-moon");
-  setCookie("lightdarkmode", true, 365);
+  localStorage.setItem("lightdarkmode", 1);
 } else {
   rootelem.style.setProperty("--background-color", "#13131A");
   rootelem.style.setProperty("--text-color", "#FEFEFE");
-  rootelem.style.setProperty("--theme-color", themecolor);
+  if (`${themecolor.length}` == 7) {
+    rootelem.style.setProperty("--theme-color", themecolor);
+  } else {
+    themecolor=themecolor.slice(0, -2);
+    rootelem.style.setProperty("--theme-color", themecolor);
+  }
   rootelem.style.setProperty("--level-one", "#1C1C24");
   rootelem.style.setProperty("--level-two", "#464555");
   rootelem.style.setProperty("--level-three", "#aba9bc");
@@ -576,83 +752,40 @@ if (lightmode) {
   purpleTheme.style.setProperty("background-color", "#6551B6");
   greyTheme.style.setProperty("background-color", "#464555");
   $("#darkmode i").addClass("fa-moon").removeClass("fa-sun");
-  setCookie("lightdarkmode", false, 365);
-};
-
-function toggleTheme() {
-  if (lightmodetoggle) {
-    rootelem.style.setProperty("--background-color", "#d1dae0");
-    rootelem.style.setProperty("--text-color", "#002131");
-    rootelem.style.setProperty("--theme-color", themecolor + "61");
-    rootelem.style.setProperty("--level-one", "#e7ecee");
-    rootelem.style.setProperty("--level-two", "#fdfdfd");
-    rootelem.style.setProperty("--level-three", "#385463");
-    blueTheme.style.setProperty("background-color", "#2a4bb3"+ "61");
-    redTheme.style.setProperty("background-color", "#A8092E"+ "61");
-    cyanTheme.style.setProperty("background-color", "#6CA7A4"+ "61");
-    greenTheme.style.setProperty("background-color", "#006B43"+ "61");
-    purpleTheme.style.setProperty("background-color", "#6551B6"+ "61");
-    greyTheme.style.setProperty("background-color", "#464555"+ "61");
-    setCookie("lightdarkmode", true, 365);
-
-    $("#darkmode i").addClass("fa-sun").removeClass("fa-moon");
-    lightmodetoggle = false;
-  } else {
-    rootelem.style.setProperty("--background-color", "#13131A");
-    rootelem.style.setProperty("--text-color", "#FEFEFE");
-    rootelem.style.setProperty("--theme-color", themecolor);
-    rootelem.style.setProperty("--level-one", "#1C1C24");
-    rootelem.style.setProperty("--level-two", "#464555");
-    rootelem.style.setProperty("--level-three", "#aba9bc");
-    blueTheme.style.setProperty("background-color", "#2a4bb3");
-    redTheme.style.setProperty("background-color", "#A8092E");
-    cyanTheme.style.setProperty("background-color", "#6CA7A4");
-    greenTheme.style.setProperty("background-color", "#006B43");
-    purpleTheme.style.setProperty("background-color", "#6551B6");
-    greyTheme.style.setProperty("background-color", "#464555");
-    $("#darkmode i").addClass("fa-moon").removeClass("fa-sun");
-    setCookie("lightdarkmode", false, 365);
-
-    lightmodetoggle = true;
-  }
-};
-
- 
-function mainAccentChanger(id){
-  let accentSelector = document.getElementById(id);
-  let accentColor = accentSelector.style.backgroundColor
-  if (lightmodetoggle){
-    rootelem.style.setProperty("--theme-color", rgb2hex(accentColor));
-    themecolor = rgb2hex(accentColor);
-    setCookie("themeColorCookie", themecolor, 365);
-  }else{
-    rootelem.style.setProperty("--theme-color", rgb2hex(accentColor)+"61");
-    themecolor = rgb2hex(accentColor)+"61";
-    setCookie("themeColorCookie", themecolor, 365);
-  }
-  // console.log(rgb2hex(accentColor));
-};
-  
+  localStorage.setItem("lightdarkmode", 0);
+}
 
 //Cookies And Settings
 
-$(".toggleSlideThemeButton, .toggleSlideTheme h3").on("click", function() {
-
+$(".toggleSlideThemeButton, .toggleSlideTheme h3").on("click", function () {
   $("#themeSelector").slideToggle();
   // $this.toggleClass("fa-chevron-up")
-  $(".toggleSlideThemeButton .fa-chevron-down, .toggleSlideThemeButton .fa-chevron-up").toggleClass("fa-chevron-down fa-chevron-up");
+  $(
+    ".toggleSlideThemeButton .fa-chevron-down, .toggleSlideThemeButton .fa-chevron-up"
+  ).toggleClass("fa-chevron-down fa-chevron-up");
 });
 
-$(".toggleSlideSensorButton, .toggleSlideSensor h3").on("click", function() {
-
-    $("#sensorConfig").slideToggle();
-    // $this.toggleClass("fa-chevron-up")
-    $(".toggleSlideSensorButton .fa-chevron-down, .toggleSlideSensorButton .fa-chevron-up").toggleClass("fa-chevron-down fa-chevron-up");
+$(".toggleSlideSensorButton, .toggleSlideSensor h3").on("click", function () {
+  $("#sensorConfig").slideToggle();
+  // $this.toggleClass("fa-chevron-up")
+  $(
+    ".toggleSlideSensorButton .fa-chevron-down, .toggleSlideSensorButton .fa-chevron-up"
+  ).toggleClass("fa-chevron-down fa-chevron-up");
 });
+
+$(".toggleSlideUIButton, .toggleSlideUI h3").on("click", function () {
+  $("#uiConfig").slideToggle();
+  // $this.toggleClass("fa-chevron-up")
+  $(
+    ".toggleSlideUIButton .fa-chevron-down, .toggleSlideUIButton .fa-chevron-up"
+  ).toggleClass("fa-chevron-down fa-chevron-up");
+});
+
 
 $(".toggleSlideTheme h3").click();
 
 $(".toggleSlideSensor h3").click();
+
 
 // document.getElementsByClassName("toggleSlideTheme")[0].click();
 

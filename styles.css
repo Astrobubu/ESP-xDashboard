@@ -316,11 +316,16 @@ input[type="color"]::-webkit-color-swatch {
   transition: 0.1s;
 }
 
-#sensorConfig label {
+#sensorConfig label, #uiConfig label {
   padding-bottom: 20px;
   display: inline-block;
   vertical-align: middle;
   padding-left: 1em;
+  -webkit-user-select: none; /* Chrome all / Safari all */
+  -moz-user-select: none; /* Firefox all */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
+  cursor: pointer;
 }
 
 /* Pseudo element for check styling */
@@ -377,20 +382,46 @@ input[type="color"]::-webkit-color-swatch {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E %3Cpath d='M15.88 8.29L10 14.17l-1.88-1.88a.996.996 0 1 0-1.41 1.41l2.59 2.59c.39.39 1.02.39 1.41 0L17.3 9.7a.996.996 0 0 0 0-1.41c-.39-.39-1.03-.39-1.42 0z' fill='%23fff'/%3E %3C/svg%3E");
 }
 
-#toggleSlide, #toggleSlide button, #toggleSlide h3{
+#toggleSlide,
+#toggleSlide button,
+#toggleSlide h3 {
   display: inline-block;
   vertical-align: middle;
   cursor: pointer;
-  -webkit-user-select: none;  /* Chrome all / Safari all */
-  -moz-user-select: none;     /* Firefox all */
-  -ms-user-select: none;      /* IE 10+ */
-  user-select: none; 
+  -webkit-user-select: none; /* Chrome all / Safari all */
+  -moz-user-select: none; /* Firefox all */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
 }
-#toggleButton{
+
+#toggleButton {
   background-color: rgba(0, 0, 0, 0);
   border-style: none;
   color: var(--text-color);
 }
-#toggleSlide i{
-  padding:0;
+#toggleSlide i {
+  padding: 0;
+}
+
+#refreshButton {
+  display: block;
+  background-color: var(--level-one);
+  border-style: none;
+  width: 10em;
+  height: 3em;
+  border-radius: 10px;
+  color: var(--text-color);
+  transition: 0.3s;
+  margin-bottom: 2.5em;
+  margin-top: 1.5em;
+}
+#refreshButton:hover {
+  background-color: var(--theme-color);
+  transition: 0.3s;
+}
+#themeSelector{
+  -webkit-user-select: none; /* Chrome all / Safari all */
+  -moz-user-select: none; /* Firefox all */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
 }

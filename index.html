@@ -194,84 +194,73 @@
         </div>
 
         <div id="sensorConfig">
-          <!-- <input type="checkbox" name="tempsensor" value="">
-          <p>Temprateure Sensor</p>
-          <label for="tempsensor">Temprateure Sensor</label> -->
+          
           <label class="label">
-            <input type="checkbox" value="text" />Temprateure Sensor
+            <input type="checkbox" value="text" id="temprateureSensorCheckbox" onchange="checkboxChangeVariable(this)"/>Temprateure Sensor
           </label>
           <br />
-          <!-- <br>
-          <input type="checkbox">
-          <p>Humidity Sensor</p> -->
           <label class="label">
-            <input type="checkbox" value="text" />Humidity Sensor
+            <input type="checkbox" value="text" id="humiditySensorCheckbox" onchange="checkboxChangeVariable(this)" />Humidity Sensor
           </label>
           <br />
-          <!-- <br>
-          <input type="checkbox">
-          <p>Pressure Sensor</p> -->
           <label class="label">
-            <input type="checkbox" value="text" />Pressure Sensor
+            <input type="checkbox" value="text" id="pressureSensorCheckbox" onchange="checkboxChangeVariable(this)"/>Pressure Sensor
           </label>
           <br />
-          <!-- <br>
-          <input type="checkbox">
-          <p>Lightning Sensor</p> -->
           <label class="label">
-            <input type="checkbox" value="text" />Lightning Sensor
+            <input type="checkbox" value="text" id="lightningSensorCheckbox" onchange="checkboxChangeVariable(this)"/>Lightning Sensor
           </label>
           <br />
-          <!-- <br>
-          <input type="checkbox">
-          <p>Air Quality Sensor</p> -->
           <label class="label">
-            <input type="checkbox" value="text" />Air Quality Sensor
+            <input type="checkbox" value="text" id="airQualitySensorCheckbox" onchange="checkboxChangeVariable(this)"/>Air Quality Sensor
           </label>
           <br />
-          <!-- <br>
-          <input type="checkbox">
-          <p>Wind Sensor</p> -->
           <label class="label">
-            <input type="checkbox" value="text" />Wind Sensor
+            <input type="checkbox" value="text" id="windSensorCheckbox" onchange="checkboxChangeVariable(this)"/>Wind Sensor
           </label>
           <br />
-          <!-- <br>
-          <input type="checkbox">
-          <p>Ultra Violet Sensor</p> -->
           <label class="label">
-            <input type="checkbox" value="text" />Ultra Violet Sensor
+            <input type="checkbox" value="text" id="ultraVioletSensorCheckbox" onchange="checkboxChangeVariable(this)"/>Ultra Violet Sensor
           </label>
           <br />
-          <!-- <br>
-          <input type="checkbox">
-          <p>Lux Sensor</p> -->
           <label class="label">
-            <input type="checkbox" value="text" />Lux Sensor
+            <input type="checkbox" value="text" id="luxSensorCheckbox" onchange="checkboxChangeVariable(this)"/>Lux Sensor
           </label>
           <br />
-          <!-- <br>
-          <input type="checkbox">
-          <p>Battery Sensor</p> -->
           <label class="label">
-            <input type="checkbox" value="text" />Battery Sensor
+            <input type="checkbox" value="text" id="batterySensorCheckbox" onchange="checkboxChangeVariable(this)"/>Battery Sensor
           </label>
           <br />
-          <!-- <br>
-          <input type="checkbox">
-          <p>Cloud Sensor</p> -->
           <label class="label">
-            <input type="checkbox" value="text" />Cloud Sensor
+            <input type="checkbox" value="text" id="cloudSensorCheckbox" onchange="checkboxChangeVariable(this)"/>Cloud Sensor
           </label>
           <br />
-          <!-- <br>
-          <input type="checkbox">
-          <p>Ground Sensor</p> -->
           <label class="label">
-            <input type="checkbox" value="text" />Ground Sensor
+            <input type="checkbox" value="text" id="groundSensorCheckbox" onchange="checkboxChangeVariable(this)"/>Ground Sensor
           </label>
         </div>
+
+        <br/>
+        <div id="toggleSlide" class="toggleSlideUI">
+          <button id="toggleButton" class="toggleSlideUIButton" type="button"><i class="fa-solid fa-chevron-up"></i></button>
+          <h3>UI Configuration</h3>
+        </div>
+        <div id="uiConfig">
+          <label class="label">
+            <input type="checkbox" value="text" id="textOrGauge" onchange="checkboxChangeVariable(this)"/>Text instead of gauge in Dashboard
+          </label>
+          <br />
+          <label class="label">
+            <input type="checkbox" value="text" id="showYesterdayGraph" onchange="checkboxChangeVariable(this)"/>Show Yesterday's Graph in Dashboard
+          </label>
+          <br />
+        </div>
+        
+
+        <button id="refreshButton" onClick="window.location.reload();">Save & Reload</button>
       </div>
+
+     
 
       <div id="Forcast" class="tabs" style="display: none">
         <h2>Forcast</h2>
