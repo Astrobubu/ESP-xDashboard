@@ -64,8 +64,12 @@
         <i class="fa-solid fa-cloud-sun-rain fa-xl"></i>
         Forcast
       </button>
-      <button id="Satellitebut" class="tabbutton" onclick="openTab('Satellite')">
-        <i class="fa-solid fa-satellite"></i>
+      <button
+        id="Satellitebut"
+        class="tabbutton"
+        onclick="openTab('Satellite')"
+      >
+        <i class="fa-solid fa-satellite fa-xl"></i>
         Satellite View
       </button>
       <button id="Aboutbut" class="tabbutton" onclick="openTab('About')">
@@ -163,141 +167,217 @@
         <!-- <hr class="solid"> -->
         <!-- <br /> -->
         <div id="toggleSlide" class="toggleSlideTheme">
-          <button id="toggleButton" class="toggleSlideThemeButton" type="button"><i class="fa-solid fa-chevron-up"></i></button>
+          <button
+            id="toggleButton"
+            class="toggleSlideThemeButton"
+            type="button"
+          >
+            <i class="fa-solid fa-chevron-up"></i>
+          </button>
           <h3>Colors</h3>
         </div>
         <div id="themeSelector">
-        <div id="darklightswtich">
-          <p>Dark/Light Mode:</p>
-          <button id="darkmode" class="btn" onclick="toggleTheme()">
-            <i id="darkmodeicon" class="fa fa-moon"></i>
-          </button>
+          <div id="darklightswtich">
+            <p>Dark/Light Mode:</p>
+            <button id="darkmode" class="btn" onclick="toggleTheme()">
+              <i id="darkmodeicon" class="fa fa-moon"></i>
+            </button>
+          </div>
+          <div>
+            <p>Theme Color:</p>
+            <button
+              class="btn mainThemeSelector"
+              id="blueTheme"
+              onclick="mainAccentChanger('blueTheme')"
+            ></button>
+            <button
+              class="btn mainThemeSelector"
+              id="redTheme"
+              onclick="mainAccentChanger('redTheme')"
+            ></button>
+            <button
+              class="btn mainThemeSelector"
+              id="cyanTheme"
+              onclick="mainAccentChanger('cyanTheme')"
+            ></button>
+            <button
+              class="btn mainThemeSelector"
+              id="greenTheme"
+              onclick="mainAccentChanger('greenTheme')"
+            ></button>
+            <button
+              class="btn mainThemeSelector"
+              id="purpleTheme"
+              onclick="mainAccentChanger('purpleTheme')"
+            ></button>
+            <button
+              class="btn mainThemeSelector"
+              id="greyTheme"
+              onclick="mainAccentChanger('greyTheme')"
+            ></button>
+          </div>
         </div>
-        <div>
-          <p>Theme Color:</p>
-          <button
-            class="btn mainThemeSelector"
-            id="blueTheme"
-            onclick="mainAccentChanger('blueTheme')"
-          ></button>
-          <button
-            class="btn mainThemeSelector"
-            id="redTheme"
-            onclick="mainAccentChanger('redTheme')"
-          ></button>
-          <button
-            class="btn mainThemeSelector"
-            id="cyanTheme"
-            onclick="mainAccentChanger('cyanTheme')"
-          ></button>
-          <button
-            class="btn mainThemeSelector"
-            id="greenTheme"
-            onclick="mainAccentChanger('greenTheme')"
-          ></button>
-          <button
-            class="btn mainThemeSelector"
-            id="purpleTheme"
-            onclick="mainAccentChanger('purpleTheme')"
-          ></button>
-          <button
-            class="btn mainThemeSelector"
-            id="greyTheme"
-            onclick="mainAccentChanger('greyTheme')"
-          ></button>
-        </div>
-      </div>
         <!-- <div>
           <p>Sensor Color:</p>
           <input type="color" id="colorSelector" name="head" value="#e66465">
         </div> -->
         <br />
         <div id="toggleSlide" class="toggleSlideSensor">
-          <button id="toggleButton" class="toggleSlideSensorButton" type="button"><i class="fa-solid fa-chevron-up"></i></button>
+          <button
+            id="toggleButton"
+            class="toggleSlideSensorButton"
+            type="button"
+          >
+            <i class="fa-solid fa-chevron-up"></i>
+          </button>
           <h3>Connected Sensors</h3>
         </div>
 
         <div id="sensorConfig">
-          
           <label class="label">
-            <input type="checkbox" value="text" id="temprateureSensorCheckbox" onchange="checkboxChangeVariable(this)"/>Temprateure Sensor
+            <input
+              type="checkbox"
+              value="text"
+              id="temprateureSensorCheckbox"
+              onchange="checkboxChangeVariable(this)"
+            />Temprateure Sensor
           </label>
           <br />
           <label class="label">
-            <input type="checkbox" value="text" id="humiditySensorCheckbox" onchange="checkboxChangeVariable(this)" />Humidity Sensor
+            <input
+              type="checkbox"
+              value="text"
+              id="humiditySensorCheckbox"
+              onchange="checkboxChangeVariable(this)"
+            />Humidity Sensor
           </label>
           <br />
           <label class="label">
-            <input type="checkbox" value="text" id="pressureSensorCheckbox" onchange="checkboxChangeVariable(this)"/>Pressure Sensor
+            <input
+              type="checkbox"
+              value="text"
+              id="pressureSensorCheckbox"
+              onchange="checkboxChangeVariable(this)"
+            />Pressure Sensor
           </label>
           <br />
           <label class="label">
-            <input type="checkbox" value="text" id="lightningSensorCheckbox" onchange="checkboxChangeVariable(this)"/>Lightning Sensor
+            <input
+              type="checkbox"
+              value="text"
+              id="lightningSensorCheckbox"
+              onchange="checkboxChangeVariable(this)"
+            />Lightning Sensor
           </label>
           <br />
           <label class="label">
-            <input type="checkbox" value="text" id="airQualitySensorCheckbox" onchange="checkboxChangeVariable(this)"/>Air Quality Sensor
+            <input
+              type="checkbox"
+              value="text"
+              id="airQualitySensorCheckbox"
+              onchange="checkboxChangeVariable(this)"
+            />Air Quality Sensor
           </label>
           <br />
           <label class="label">
-            <input type="checkbox" value="text" id="windSensorCheckbox" onchange="checkboxChangeVariable(this)"/>Wind Sensor
+            <input
+              type="checkbox"
+              value="text"
+              id="windSensorCheckbox"
+              onchange="checkboxChangeVariable(this)"
+            />Wind Sensor
           </label>
           <br />
           <label class="label">
-            <input type="checkbox" value="text" id="ultraVioletSensorCheckbox" onchange="checkboxChangeVariable(this)"/>Ultra Violet Sensor
+            <input
+              type="checkbox"
+              value="text"
+              id="ultraVioletSensorCheckbox"
+              onchange="checkboxChangeVariable(this)"
+            />Ultra Violet Sensor
           </label>
           <br />
           <label class="label">
-            <input type="checkbox" value="text" id="luxSensorCheckbox" onchange="checkboxChangeVariable(this)"/>Lux Sensor
+            <input
+              type="checkbox"
+              value="text"
+              id="luxSensorCheckbox"
+              onchange="checkboxChangeVariable(this)"
+            />Lux Sensor
           </label>
           <br />
           <label class="label">
-            <input type="checkbox" value="text" id="batterySensorCheckbox" onchange="checkboxChangeVariable(this)"/>Battery Sensor
+            <input
+              type="checkbox"
+              value="text"
+              id="batterySensorCheckbox"
+              onchange="checkboxChangeVariable(this)"
+            />Battery Sensor
           </label>
           <br />
           <label class="label">
-            <input type="checkbox" value="text" id="cloudSensorCheckbox" onchange="checkboxChangeVariable(this)"/>Cloud Sensor
+            <input
+              type="checkbox"
+              value="text"
+              id="cloudSensorCheckbox"
+              onchange="checkboxChangeVariable(this)"
+            />Cloud Sensor
           </label>
           <br />
           <label class="label">
-            <input type="checkbox" value="text" id="groundSensorCheckbox" onchange="checkboxChangeVariable(this)"/>Ground Sensor
+            <input
+              type="checkbox"
+              value="text"
+              id="groundSensorCheckbox"
+              onchange="checkboxChangeVariable(this)"
+            />Ground Sensor
           </label>
         </div>
 
-        <br/>
+        <br />
         <div id="toggleSlide" class="toggleSlideUI">
-          <button id="toggleButton" class="toggleSlideUIButton" type="button"><i class="fa-solid fa-chevron-up"></i></button>
+          <button id="toggleButton" class="toggleSlideUIButton" type="button">
+            <i class="fa-solid fa-chevron-up"></i>
+          </button>
           <h3>UI Configuration</h3>
         </div>
         <div id="uiConfig">
           <label class="label">
-            <input type="checkbox" value="text" id="textOrGauge" onchange="checkboxChangeVariable(this)"/>Text instead of gauge in Dashboard
+            <input
+              type="checkbox"
+              value="text"
+              id="textOrGauge"
+              onchange="checkboxChangeVariable(this)"
+            />Text instead of gauge in Dashboard
           </label>
           <br />
           <label class="label">
-            <input type="checkbox" value="text" id="showYesterdayGraph" onchange="checkboxChangeVariable(this)"/>Show Yesterday's Graph in Dashboard
+            <input
+              type="checkbox"
+              value="text"
+              id="showYesterdayGraph"
+              onchange="checkboxChangeVariable(this)"
+            />Show Yesterday's Graph in Dashboard
           </label>
           <br />
         </div>
-        
 
-        <button id="refreshButton" onClick="window.location.reload();">Save & Reload</button>
+        <button id="refreshButton" onClick="window.location.reload();">
+          Save & Reload
+        </button>
       </div>
-
-     
 
       <div id="Forcast" class="tabs" style="display: none">
         <h2>Forcast</h2>
-        <h4>
-          Get the latest data from local weather stations
-        </h4>
+        <h4>Get the latest data from local weather stations</h4>
       </div>
 
       <div id="Satellite" class="tabs" style="display: none">
         <h2>Satellite View</h2>
         <h4>
-          Get the latest data from weahter satellites and other weatherstations
+          Get the latest data from weahter satellites
         </h4>
+        <img id="indianSatelliteIR" class="hoverborder" src="https://mausam.imd.gov.in/Satellite/Converted/IR1.gif" alt="">
       </div>
 
       <div id="About" class="tabs" style="display: none">

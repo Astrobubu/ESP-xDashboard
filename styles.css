@@ -79,13 +79,11 @@ i {
   background-color: var(--theme-color);
   border-radius: 0px 10px 0 0;
   /* border-radius: 10px 10px 0 0; */
-
 }
 
 #Aboutbut {
   border-radius: 0 0 10px 0px;
   /* border-radius: 0 0 10px 10px; */
-
 }
 
 /* Plot Graphs for Dashboard */
@@ -320,7 +318,8 @@ input[type="color"]::-webkit-color-swatch {
   transition: 0.1s;
 }
 
-#sensorConfig label, #uiConfig label {
+#sensorConfig label,
+#uiConfig label {
   padding-bottom: 20px;
   display: inline-block;
   vertical-align: middle;
@@ -423,10 +422,28 @@ input[type="color"]::-webkit-color-swatch {
   background-color: var(--theme-color);
   transition: 0.3s;
 }
-#themeSelector{
+#themeSelector {
   -webkit-user-select: none; /* Chrome all / Safari all */
   -moz-user-select: none; /* Firefox all */
   -ms-user-select: none; /* IE 10+ */
   user-select: none;
   padding-left: 1em;
+}
+
+#indianSatelliteIR {
+  width: 400px;
+  height: 400px;
+  object-fit: none;
+  object-position: 1% 42%;
+  border-radius: 10px;
+}
+
+.hoverborder{
+  border-style: solid;
+    border-width: 1px;
+    border-color: var(--level-two);
+}
+.hoverborder:hover{
+  border-color: var(--level-three);
+  transition: 0.3s;
 }
