@@ -49,6 +49,7 @@ body {
 
 .tabs {
   padding-right: 1em;
+  padding-bottom: 1em;
 }
 
 .tabcol {
@@ -390,11 +391,15 @@ input[type="color"]::-webkit-color-swatch {
 #toggleSlide h3 {
   display: inline-block;
   vertical-align: middle;
-  cursor: pointer;
+  /* cursor: pointer; */
   -webkit-user-select: none; /* Chrome all / Safari all */
   -moz-user-select: none; /* Firefox all */
   -ms-user-select: none; /* IE 10+ */
   user-select: none;
+}
+#toggleSlide button,
+#toggleSlide h3{
+  cursor: pointer;
 }
 
 #toggleButton {
@@ -415,7 +420,7 @@ input[type="color"]::-webkit-color-swatch {
   border-radius: 10px;
   color: var(--text-color);
   transition: 0.3s;
-  margin-bottom: 2.5em;
+  /* margin-bottom: 2.5em; */
   margin-top: 1.5em;
 }
 #refreshButton:hover {
@@ -430,20 +435,108 @@ input[type="color"]::-webkit-color-swatch {
   padding-left: 1em;
 }
 
-#indianSatelliteIR {
+/* #indianSatelliteIR {
+
+} */
+
+.hoverBorder{
+  border-style: solid;
+    border-width: 1px;
+    border-color: var(--level-two);
+}
+.hoverBorder:hover{
+  border-color: var(--level-three);
+  transition: 0.3s;
+}
+
+.clickToZoom{
+  width: 97%;
+  height: auto;
+  object-fit: cover;
+  object-position: 0% 0%;
+  border-radius: 10px;
+  transition: 0.3s;
+  cursor: zoom-out;
+}
+
+.croppedImg{
   width: 400px;
   height: 400px;
   object-fit: none;
   object-position: 1% 42%;
   border-radius: 10px;
+  transition: 0.3s;
+  cursor: zoom-in;
 }
 
-.hoverborder{
-  border-style: solid;
-    border-width: 1px;
-    border-color: var(--level-two);
+
+.imageContainer{
+  position: relative;
+  
+
 }
-.hoverborder:hover{
-  border-color: var(--level-three);
-  transition: 0.3s;
+.imageContainer img {
+  width: 100%;
+  
+}
+.imageContainer button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  visibility: hidden;
+  background-color: rgba(0, 0, 0, 0);
+  color: #fefefe;
+  border-style: none;
+  filter: drop-shadow(0px 0px 10px rgb(0 0 0));
+  cursor: pointer;
+
+}
+
+
+.gridwrap{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+
+
+#solarImg{
+  width: 100%;
+  scale: 111%;
+}
+
+#cardImage h4{
+ margin-top: 0;
+}
+
+#solarImgDiv{
+  border-radius: 150px;
+  overflow: hidden;
+}
+
+#cardSolarImage #cardImage{
+  padding-bottom: 20px;
+}
+
+.cardsm {
+  color: var(--text-color);
+  text-align: center;
+
+  border-radius: 5px;
+  margin-right: 10px;
+  margin-left: 10px;
+  padding: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 11em;
+  display: inline-block;
+}
+.bigfont{
+  font-size: 1.5em;
+    font-weight: 900;
+}
+.card2{
+  text-align: center;
+
 }

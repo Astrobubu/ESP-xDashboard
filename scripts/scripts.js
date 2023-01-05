@@ -54,7 +54,7 @@ function toggleTheme() {
     if (`${themecolor.length}` == 7) {
       rootelem.style.setProperty("--theme-color", themecolor);
     } else {
-      themecolor=themecolor.slice(0, -2);
+      themecolor = themecolor.slice(0, -2);
       rootelem.style.setProperty("--theme-color", themecolor);
     }
     rootelem.style.setProperty("--level-one", "#1C1C24");
@@ -184,16 +184,13 @@ function checkboxChangeVariable(element) {
   }
 }
 
-function checkStateAndTickCheckbox(id){
-  if (localStorage.getItem(id)==1){
-    $("#"+id).prop('checked', true);
+function checkStateAndTickCheckbox(id) {
+  if (localStorage.getItem(id) == 1) {
+    $("#" + id).prop("checked", true);
+  } else {
+    $("#" + id).prop("checked", false);
   }
-  else {
-    $("#"+id).prop('checked', false);
-  }
-  
 }
-
 
 const rootelem = document.documentElement;
 
@@ -212,9 +209,8 @@ var humidityTodayColor = "#6ab7ff";
 var humidityYesterdayColor = "#005cb2";
 var pressureTodayColor = "#5ddef4";
 var pressureYesterdayColor = "#007c91";
-var airqualityTodayColor= "#82c250";
-var airqualityYesterdayColor= "#414d37";
-
+var airqualityTodayColor = "#82c250";
+var airqualityYesterdayColor = "#414d37";
 
 var enableTemperature = localStorage.getItem("temprateureSensorCheckbox");
 var enbaleHumidity = localStorage.getItem("humiditySensorCheckbox");
@@ -245,8 +241,8 @@ if (localStorage.getItem("themeColorCookie")) {
 }
 // console.log(localStorage.getItem("themeColorCookie"))
 
-if (enableTemperature==1) {
-  $("#temprateureSensorCheckbox").prop('checked', true);
+if (enableTemperature == 1) {
+  $("#temprateureSensorCheckbox").prop("checked", true);
 
   var TempChart = Highcharts.chart("containertemp", {
     series: [
@@ -363,7 +359,7 @@ if (enableTemperature==1) {
   var lastReadTemp = 25;
   var tempUnit = "°C";
   cardgraphTemp.querySelector("#currentsensortemp").textContent = "Temperature";
-  if (textOrGauge==0) {
+  if (textOrGauge == 0) {
     var tempKnob = pureknob.createKnob(50, 50);
     tempKnob.setProperty("valMin", 0);
     tempKnob.setProperty("valMax", 100);
@@ -387,8 +383,8 @@ if (enableTemperature==1) {
   cardgraphTemp.style.display = "none";
 }
 
-if (enbaleHumidity==1) {
-  $("#humiditySensorCheckbox").prop('checked', true);
+if (enbaleHumidity == 1) {
+  $("#humiditySensorCheckbox").prop("checked", true);
 
   var HumidityChart = Highcharts.chart("containerhumd", {
     series: [
@@ -508,7 +504,7 @@ if (enbaleHumidity==1) {
   var latestReadHumdity = 50;
   var humdityUnit = "%";
   cardgraphHumd.querySelector("#currentsensorhumd").textContent = "Humidity";
-  if (textOrGauge==0) {
+  if (textOrGauge == 0) {
     var humidityKnob = pureknob.createKnob(50, 50);
     humidityKnob.setProperty("valMin", 0);
     humidityKnob.setProperty("valMax", 100);
@@ -532,8 +528,8 @@ if (enbaleHumidity==1) {
   cardgraphHumd.style.display = "none";
 }
 
-if (enablePressure==1) {
-  $("#pressureSensorCheckbox").prop('checked', true);
+if (enablePressure == 1) {
+  $("#pressureSensorCheckbox").prop("checked", true);
 
   var PressureChart = Highcharts.chart("containerpressure", {
     series: [
@@ -656,7 +652,7 @@ if (enablePressure==1) {
   var pressureUnit = " kPa";
   cardgraphPressure.querySelector("#currentsensorpressure").textContent =
     "Air Pressure";
-  if (textOrGauge==0) {
+  if (textOrGauge == 0) {
     var pressureKnob = pureknob.createKnob(50, 50);
     pressureKnob.setProperty("valMin", 0);
     pressureKnob.setProperty("valMax", 100);
@@ -680,8 +676,8 @@ if (enablePressure==1) {
   cardgraphPress.style.display = "none";
 }
 
-if (enableAirQuality==1) {
-  $("#airQualitySensorCheckbox").prop('checked', true);
+if (enableAirQuality == 1) {
+  $("#airQualitySensorCheckbox").prop("checked", true);
 
   var PressureChart = Highcharts.chart("containerairq", {
     series: [
@@ -800,11 +796,11 @@ if (enableAirQuality==1) {
   });
 
   var cardgraphAirQuality = document.getElementById("cardgraphAirQuality");
-  var latestReadPressure = 30;
-  var pressureUnit = " kPa";
+  var latestReadAirQuality = 30;
+  var airQualityUnit = "%";
   cardgraphAirQuality.querySelector("#currentsensorairquality").textContent =
     "Air Quality";
-  if (textOrGauge==0) {
+  if (textOrGauge == 0) {
     var pressureKnob = pureknob.createKnob(50, 50);
     pressureKnob.setProperty("valMin", 0);
     pressureKnob.setProperty("valMax", 100);
@@ -820,8 +816,7 @@ if (enableAirQuality==1) {
     var elem = document.getElementById("currentreadairquality");
     elem.appendChild(node);
   } else {
-    cardgraphPressure.querySelector("#currentreadairquality").textContent =
-      latestReadPressure + pressureUnit;
+    cardgraphAirQuality.querySelector("#currentreadairquality").textContent =latestReadAirQuality + airQualityUnit;
   }
 } else {
   let cardgraphPress = document.getElementById("cardairq");
@@ -886,7 +881,7 @@ if (lightmode) {
   if (`${themecolor.length}` == 7) {
     rootelem.style.setProperty("--theme-color", themecolor);
   } else {
-    themecolor=themecolor.slice(0, -2);
+    themecolor = themecolor.slice(0, -2);
     rootelem.style.setProperty("--theme-color", themecolor);
   }
   rootelem.style.setProperty("--level-one", "#1C1C24");
@@ -928,17 +923,77 @@ $(".toggleSlideUIButton, .toggleSlideUI h3").on("click", function () {
   ).toggleClass("fa-chevron-down fa-chevron-up");
 });
 
-
 $(".toggleSlideTheme h3").click();
 
 $(".toggleSlideSensor h3").click();
 
 $(".toggleSlideUI h3").click();
 
-$("#Settingsbut").click();
+// $("#Settingsbut").click();
 
+$("#indianSatelliteIR, .imageContainer").on("click", function () {
+  $(this).toggleClass("clickToZoom croppedImg");
+});
+
+$("#indianSatelliteIR").on("click", function () {
+  $(".imageContainer i").toggleClass(
+    "fa-magnifying-glass-minus fa-magnifying-glass-plus"
+  );
+});
+$("#imgContainer").on("mouseenter", function () {
+  $("#imgContainer button").css("visibility", "visible");
+});
+$("#imgContainer").on("mouseleave", function () {
+  $("#imgContainer button").css("visibility", "hidden");
+});
 
 // document.getElementsByClassName("toggleSlideTheme")[0].click();
 
 // document.getElementsByClassName("toggleSlideSensor")[0].click();
 
+$.getJSON(
+  "https://api.weatherapi.com/v1/current.json?key=ef773d319e9b4e95a4c203245212401&q=DXB",
+  function (data) {
+    // console.log(data)
+
+    $("#clouds").text(data.current.cloud);
+    $("#condition").text(data.current.condition.text);
+    $("#temp").text(data.current.temp_c + " C°");
+    $("#gust").text(data.current.gust_kph + " km/h");
+    $("#humidity").text(data.current.humidity + "%");
+    $("#last_updated").text("Last Updated: " + data.current.last_updated);
+    $("#precip_mm").text(data.current.precip_mm + " mm");
+    $("#pressure_mb").text(data.current.pressure_mb + " mb");
+    $("#uv").text(data.current.uv);
+    $("#vis_km").text(data.current.vis_km + " km");
+    $("#wind_degree").text(data.current.wind_degree + "°");
+    $("#wind_dir").text(data.current.wind_dir);
+    $("#wind_kph").text(data.current.wind_kph + " km/h");
+
+    if (data.current.vis_miles <= 0) {
+      $("#vis_miles").text("Dense fog, objects not visible at 45 m");
+    } else if (data.current.vis_miles <= 1) {
+      $("#vis_miles").text("Thick fog, objects not visible at 200 m");
+    } else if (data.current.vis_miles <= 2) {
+      $("#vis_miles").text("Fog, objects not visible at 400 m");
+    } else if (data.current.vis_miles <= 3) {
+      $("#vis_miles").text("Moderate fog, objects not visible at 800 m");
+    } else if (data.current.vis_miles <= 4) {
+      $("#vis_miles").text("Thin fog or mist, objects not visible at 1 km");
+    } else if (data.current.vis_miles <= 5) {
+      $("#vis_miles").text("Visibility poor, objects not visible at 3 km");
+    } else if (data.current.vis_miles <= 6) {
+      $("#vis_miles").text("Visibility moderate, objects not visible at 10 km");
+    } else if (data.current.vis_miles <= 7) {
+      $("#vis_miles").text("Visibility good, objects not visible at 15 km");
+    } else if (data.current.vis_miles <= 8) {
+      $("#vis_miles").text(
+        "Visibility very good, objects not visible at 50 km"
+      );
+    } else if (data.current.vis_miles <= 9) {
+      $("#vis_miles").text(
+        "Visibility excellent, objects visible more than 50 km"
+      );
+    }
+  }
+);
