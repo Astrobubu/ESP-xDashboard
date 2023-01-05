@@ -4,9 +4,10 @@
   <head>
     <title>EPS-xDashboard</title>
     <meta charset="UTF-8" />
-    <link rel="shortcut icon" type="image/jpg" href="/favicon.ico"/>
+    <link rel="shortcut icon" type="image/jpg" href="/favicon.ico" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="scripts/pureknob.js"></script>
 
     <!-- <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/series-label.js"></script>
@@ -22,7 +23,6 @@
 
     <script src="scripts/highcharts.js"></script>
     <script src="scripts/accessibility.js"></script>
-    <script src="scripts/pureknob.js"></script>
     <script src="scripts/series-label.js"></script>
     <script src="scripts/jquery-3.6.3.js"></script>
 
@@ -31,7 +31,9 @@
       src="https://kit.fontawesome.com/11e440838c.js"
       crossorigin="anonymous"
     ></script>
+    <!-- <link href="styles/fontawesome/css/all.css" rel="stylesheet"> -->
 
+    <!-- <script src="styles/fontawesome/js/all.js"></script> -->
     <link rel="stylesheet" href="styles/styles.css" />
   </head>
 
@@ -153,17 +155,25 @@
           </div>
           <div id="cardSolarImage">
             <div class="card">
-              <!-- Custom information -->
               <div class="about" id="cardImage">
                 <h3>Solar Image</h3>
                 <h4>Daily</h4>
-                <div id="solarImgDiv">                <img id="solarImg" src="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_1024_HMIIC.jpg" alt="">
+                <div id="solarImgDiv">
+                  <!-- <img id="solarImg" src="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_1024_HMIIC.jpg" alt=""> -->
                 </div>
               </div>
-
-              <figure class="highcharts-figure">
-                <div id="containertemp"></div>
-              </figure>
+            </div>
+          </div>
+          <div id="cardLunarImage">
+            <div class="card">
+              <div class="about" id="cardImage">
+                <h3>Lunar Image</h3>
+                <h4>Daily</h4>
+                <div id="lunarImgDiv">
+                  <!-- <img id="lunarImg" src="/moon.jpg" alt=""> -->
+                  
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -384,12 +394,12 @@
         <h4>Get the latest data from local weather stations</h4>
         <div class="weathered container">
           <div class="col-sm cardsm">
-              <p id="temp" class="bigfont">22 C°</p>
-              <p>Temperature</p>
+            <p id="temp" class="bigfont">22 C°</p>
+            <p>Temperature</p>
           </div>
           <div class="col-sm cardsm">
-              <p id="pressure_mb" class="bigfont">1018 mb</p>
-              <p>Pressure</p>
+            <p id="pressure_mb" class="bigfont">1018 mb</p>
+            <p>Pressure</p>
           </div>
           <div class="col-sm cardsm">
             <p id="humidity" class="bigfont">50%</p>
@@ -404,28 +414,28 @@
             <p>Precipitation</p>
           </div>
           <div class="col-sm cardsm">
-              <p id="clouds" class="bigfont">0</p>
-              <p>Clouds Sensor</p>
+            <p id="clouds" class="bigfont">0</p>
+            <p>Clouds Sensor</p>
           </div>
           <div class="col-sm cardsm">
-              <p id="condition" class="bigfont">Clear</p>
-              <p>Weather Type</p>
+            <p id="condition" class="bigfont">Clear</p>
+            <p>Weather Type</p>
           </div>
           <div class="col-sm cardsm">
-              <p id="vis_km" class="bigfont">10 km</p>
-              <p>Visibility Distance</p>
+            <p id="vis_km" class="bigfont">10 km</p>
+            <p>Visibility Distance</p>
           </div>
           <div class="col-sm cardsm">
-              <p id="wind_degree" class="bigfont">110°</p>
-              <p>Wind Degree</p>
+            <p id="wind_degree" class="bigfont">110°</p>
+            <p>Wind Degree</p>
           </div>
           <div class="col-sm cardsm">
-              <p id="wind_dir" class="bigfont">ESE</p>
-              <p>Wind Direction</p>
+            <p id="wind_dir" class="bigfont">ESE</p>
+            <p>Wind Direction</p>
           </div>
           <div class="col-sm cardsm">
-              <p id="wind_kph" class="bigfont">20.2 km/h</p>
-              <p>Wind Speed</p>
+            <p id="wind_kph" class="bigfont">20.2 km/h</p>
+            <p>Wind Speed</p>
           </div>
           <div id="gustbox" class="col-sm cardsm">
             <p id="gust" class="bigfont">37.1 km/h</p>
@@ -433,40 +443,41 @@
           </div>
 
           <div class="col-md card2">
-              <p id="vis_miles" class="bigfont">Visibility moderate, objects not visible at 10 km</p>
-              <p>Visibility Quality</p>
+            <p id="vis_miles" class="bigfont">
+              Visibility moderate, objects not visible at 10 km
+            </p>
+            <p>Visibility Quality</p>
           </div>
-      </div>
+        </div>
       </div>
 
       <div id="Satellite" class="tabs" style="display: none">
         <h2>Satellite View</h2>
-        <h4>
-          Get the latest data from weahter satellites
-        </h4>
+        <h4>Get the latest data from weahter satellites</h4>
         <div class="gridwrap">
           <div id="imgContainer" class="imageContainer croppedImg">
-            <img
+            <!-- <img
               id="indianSatelliteIR"
               class="hoverBorder croppedImg"
               src="https://mausam.imd.gov.in/Satellite/Converted/IR1.gif"
               alt=""
-            />
-            <button><i class="fa-solid fa-magnifying-glass-minus fa-2xl"></i></button>  
-  
+            /> -->
+            <button>
+              <i class="fa-solid fa-magnifying-glass-minus fa-2xl"></i>
+            </button>
           </div>
           <div id="imgContainer" class="imageContainer croppedImg">
-            <img
+            <!-- <img
               id="indianSatelliteIR"
               class="hoverBorder croppedImg"
               src="https://mausam.imd.gov.in/Satellite/Converted/WV.gif"
               alt=""
-            />
-            <button><i class="fa-solid fa-magnifying-glass-minus fa-2xl"></i></button>  
-  
+            /> -->
+            <button>
+              <i class="fa-solid fa-magnifying-glass-minus fa-2xl"></i>
+            </button>
           </div>
         </div>
-      
       </div>
 
       <div id="About" class="tabs" style="display: none">
