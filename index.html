@@ -8,6 +8,8 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="scripts/pureknob.js"></script>
+    <script src="scripts/suncalc.js"></script>
+    <script src="scripts/moment.min.js"></script>
 
     <!-- <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/series-label.js"></script>
@@ -31,9 +33,9 @@
       src="https://kit.fontawesome.com/11e440838c.js"
       crossorigin="anonymous"
     ></script>
-    <!-- <link href="styles/fontawesome/css/all.css" rel="stylesheet"> -->
+    <!-- <link href="styles/fontawesome/css/all.css" rel="stylesheet" />
 
-    <!-- <script src="styles/fontawesome/js/all.js"></script> -->
+    <script src="styles/fontawesome/js/all.js"></script> -->
     <link rel="stylesheet" href="styles/styles.css" />
   </head>
 
@@ -76,14 +78,19 @@
         About
       </button>
     </div>
-
+    <div class="alignright">
+      <h3>Local Time: </h3>
+      <h4 id="dateClock"></h4> 
+      <h3>UTC Time: </h3>
+      <h4 id="dateClockUTC"></h4>
+    </div>
     <div class="maincontainer">
       <div id="Dashboard" class="tabs">
         <h2>Dashboard</h2>
         <h4>Overview on all the connected sensors available at the moment</h4>
         <div id="cardcontainer" class="grid">
           <div id="cardtemp">
-            <div class="card">
+            <div class="card smallCard">
               <!-- Custom information -->
               <div class="about" id="cardgraphtemp">
                 <!-- <h3>Temprature</h3> -->
@@ -100,7 +107,7 @@
             </div>
           </div>
           <div id="cardhumd">
-            <div class="card">
+            <div class="card smallCard">
               <!-- Custom information -->
               <div class="about" id="cardgraphhumd">
                 <!-- <h3>Temprature</h3> -->
@@ -118,10 +125,9 @@
             </div>
           </div>
           <div id="cardpress">
-            <div class="card">
-              <!-- Custom information -->
+            <div class="card smallCard">
               <div class="about" id="cardgraphpressure">
-                <!-- <h3>Temprature</h3> -->
+
                 <h3 class="alignleft" id="currentsensorpressure"></h3>
                 <h3 class="alignright" id="currentreadpressure"></h3>
                 <br />
@@ -136,7 +142,7 @@
             </div>
           </div>
           <div id="cardairq">
-            <div class="card">
+            <div class="card smallCard">
               <!-- Custom information -->
               <div class="about" id="cardgraphAirQuality">
                 <!-- <h3>Temprature</h3> -->
@@ -153,26 +159,59 @@
               <!-- <canvas id="line-chart"></canvas> -->
             </div>
           </div>
+          <div id="cardairground">
+            <div class="card smallCard">
+              <!-- Custom information -->
+              <div class="about" id="cardgraphAirGround">
+                <!-- <h3>Temprature</h3> -->
+                <h3 class="alignleft" id="currentsensorairground"></h3>
+                <h3 class="alignright" id="currentreadairground"></h3>
+                <br />
+                <h4>24 hours</h4>
+                <div class="legends"></div>
+              </div>
+
+              <figure class="highcharts-figure">
+                <div id="containerairground"></div>
+              </figure>
+              <!-- <canvas id="line-chart"></canvas> -->
+            </div>
+          </div>
           <div id="cardSolarImage">
-            <div class="card">
+            <div class="card smallCard">
               <div class="about" id="cardImage">
                 <h3>Solar Image</h3>
                 <h4>Daily</h4>
                 <div id="solarImgDiv">
-                  <!-- <img id="solarImg" src="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_1024_HMIIC.jpg" alt=""> -->
+                  <img
+                    id="solarImg"
+                    src="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_1024_HMIIC.jpg"
+                    alt=""
+                  />
                 </div>
               </div>
             </div>
           </div>
           <div id="cardLunarImage">
-            <div class="card">
+            <div class="card smallCard">
               <div class="about" id="cardImage">
                 <h3>Lunar Image</h3>
                 <h4>Daily</h4>
                 <div id="lunarImgDiv">
-                  <!-- <img id="lunarImg" src="/moon.jpg" alt=""> -->
-                  
+                  <img id="lunarImg" src="/moon.jpg" alt="" />
                 </div>
+              </div>
+            </div>
+          </div>
+          <div id="cardRiseSet">
+            <div class="card smallCard">
+              <div class="about" id="cardImage">
+                <h3>Sunrise: </h3><h4 id="sunRise"></h4>
+                <h3>Sunset: </h3> <h4 id="sunSet"></h4>
+                <h3>Moonrise: </h3><h4 id="moonRise"></h4>
+                <h3>Moonset: </h3><h4 id="moonSet"></h4>
+                <h3>Day Length: </h3><h4 id="dayL"></h4>
+                <h3>Night Length: </h3><h4 id="nightL"></h4>
               </div>
             </div>
           </div>
@@ -238,11 +277,17 @@
               onclick="mainAccentChanger('greyTheme')"
             ></button>
           </div>
+          <div id="sensorColor">
+            <h3>Sensor Color:</h3>
+            <div>
+              <p>Temperature: </p><input type="color" id="colorSelector" name="head" value="#fc824b"> <input type="color" id="colorSelector" name="head" value="#b91400"><br>
+              <p>Humidity:___ </p><input type="color" id="colorSelector" name="head" value="#6ab7ff"> <input type="color" id="colorSelector" name="head" value="#005cb2"><br>
+              <p>Pressure:___ </p><input type="color" id="colorSelector" name="head" value="#5ddef4"> <input type="color" id="colorSelector" name="head" value="#007c91"><br>
+              <p>Air Quality:__</p><input type="color" id="colorSelector" name="head" value="#82c250"> <input type="color" id="colorSelector" name="head" value="#414d37"><br>
+            </div>
+          </div>
         </div>
-        <!-- <div>
-          <p>Sensor Color:</p>
-          <input type="color" id="colorSelector" name="head" value="#e66465">
-        </div> -->
+       
         <br />
         <div id="toggleSlide" class="toggleSlideSensor">
           <button
@@ -353,6 +398,15 @@
               id="groundSensorCheckbox"
               onchange="checkboxChangeVariable(this)"
             />Ground Sensor
+          </label>
+          <br />
+          <label class="label">
+            <input
+              type="checkbox"
+              value="text"
+              id="airGroundSensorCheckbox"
+              onchange="checkboxChangeVariable(this)"
+            />Air vs. Ground Sensor
           </label>
         </div>
 
@@ -483,6 +537,22 @@
       <div id="About" class="tabs" style="display: none">
         <h2>About Us</h2>
         <h4>Know more about Dubai Astronomy Group</h4>
+        <p>
+          Since July 1st 2015, the original Sunspot number data have been
+          replaced by a new entirely revised data series. On this occasion, the
+          data are presented in a new array of files, containing additional
+          values that were not present in the original series. For proper
+          tracking of those changes, the present version is numbered 2.0.
+        </p>
+        <p>
+          To download a data file, click on one of the title boxes below, and
+          then select the file in the fold-down list by clicking on the
+          corresponding gray button. All files are in ASCII text and can be
+          opened in any text editor. CSV files allow direct import in various
+          applications, like spreadsheets.The INFO button gives a description of
+          the contents of each file, and the corresponding time series can be
+          viewed by clicking on the PLOT button.
+        </p>
       </div>
     </div>
     <!-- <button type="button" class="themebutton" onclick="myFunction_set()"> -->

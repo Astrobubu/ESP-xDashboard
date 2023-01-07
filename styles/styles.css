@@ -91,7 +91,7 @@ i {
 .card {
   background-color: var(--level-one);
   /* box-shadow: 0 0 12px rgba(0, 0, 0, 0.2); */
-  width: 300px;
+  /* width: 300px; */
   border-radius: 10px;
   overflow: hidden;
   border-style: solid;
@@ -117,12 +117,15 @@ i {
 }
 
 .grid {
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
+  gap: 20px; */
+
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, max-content));
+  grid-template-columns: repeat(auto-fill, minmax(300px, auto));
   grid-auto-rows: minmax(2em, auto);
-  grid-gap: 1em;
+justify-content: start;
+  grid-gap: 20px;
   width: 100%;
 }
 .card .about h3 {
@@ -193,7 +196,7 @@ h4 {
     max-width: 800px; */
   /* max-height: 400px; */
 
-  margin: 0em auto;
+  margin: 1em auto;
 }
 
 .highcharts-data-table table {
@@ -503,7 +506,8 @@ input[type="color"]::-webkit-color-swatch {
 
 #solarImg{
   width: 100%;
-  scale: 111%;
+  scale: 100%;
+  mix-blend-mode: exclusion;
 }
 
 #cardImage h4{
@@ -511,11 +515,13 @@ input[type="color"]::-webkit-color-swatch {
 }
 
 #solarImgDiv{
-  border-radius: 150px;
+  /* border-radius: 150px; */
   overflow: hidden;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
-#cardSolarImage #cardImage{
+#cardSolarImage #cardImage, #cardLunarImage #cardImage{
   padding-bottom: 20px;
 }
 
@@ -540,4 +546,66 @@ input[type="color"]::-webkit-color-swatch {
   text-align: center;
 
 }
+#lunarImgDiv{
+  /* border-radius: 550px; */
+  overflow: hidden;
+  /* width: 80%; */
+  /* display: flex; */
+  mix-blend-mode: exclusion;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+#lunarImg{
+  width: 100%;
+  scale: 100%;
+}
 
+
+.smallCard{
+  width: 300px;
+  height: 300px;
+}
+
+.wideCard{
+  /* width: 2fr; */
+  /* max-width: 620px; */
+  /* min-width: 300px; */
+  height: 300px;
+  /* max-height: 300px; */
+}
+
+.tallCard{
+  width: 620px;
+  height: 600px;
+}
+
+.bigCard{
+  width: 620px;
+  height: 620px;
+}
+
+#sensorColor p{
+  padding-left: 2em;
+}
+
+#cardRiseSet h3, #cardRiseSet h4{
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 24px;
+}
+#cardRiseSet h4{
+  padding-left: 1.5em;
+}
+#cardRiseSet .about{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, auto));
+  grid-row-gap: 0.7em;
+}
+
+#dateClock, #dateClockUTC{
+  padding-right: 2em;
+}
+
+.alignright h3, .alignright h4{
+  display: inline-block;
+}

@@ -182,6 +182,13 @@ function checkboxChangeVariable(element) {
       localStorage.setItem("showYesterdayGraph", 1);
     }
   }
+  if ($(element).attr("id") == "airGroundSensorCheckbox") {
+    if (localStorage.getItem("airGroundSensorCheckbox") == 1) {
+      localStorage.setItem("airGroundSensorCheckbox", 0);
+    } else {
+      localStorage.setItem("airGroundSensorCheckbox", 1);
+    }
+  }
 }
 
 function checkStateAndTickCheckbox(id) {
@@ -192,6 +199,116 @@ function checkStateAndTickCheckbox(id) {
   }
 }
 
+function setTimeTopBar() {
+  var d = new Date();
+  $("#dateClock").text(
+    d.toLocaleString("en-US", {
+      hour12: false,
+      weekday: "short", // long, short, narrow
+      day: "numeric", // numeric, 2-digit
+      year: "numeric", // numeric, 2-digit
+      month: "short", // numeric, 2-digit, long, short, narrow
+      hour: "numeric", // numeric, 2-digit
+      minute: "numeric", // numeric, 2-digit
+    })
+  );
+  $("#dateClockUTC").text(
+    d.toLocaleString("en-US", {
+      timeZone: "UTC",
+      hour12: false,
+      weekday: "short", // long, short, narrow
+      day: "numeric", // numeric, 2-digit
+      year: "numeric", // numeric, 2-digit
+      month: "short", // numeric, 2-digit, long, short, narrow
+      hour: "numeric", // numeric, 2-digit
+      minute: "numeric", // numeric, 2-digit
+    })
+  );
+}
+
+function secondsToHMS(secs) {
+  function z(n) {
+    return (n < 10 ? "0" : "") + n;
+  }
+  var sign = secs < 0 ? "-" : "";
+  secs = Math.abs(secs);
+  return sign + z((secs / 3600) | 0) + ":" + z(((secs % 3600) / 60) | 0);
+}
+
+function getNightLengthFromDayLength(DayLen) {
+  var startTime = moment(DayLen, "HH:mm");
+  var endTime = moment("24:00", "HH:mm");
+  var duration = moment.duration(endTime.diff(startTime));
+  var hours = parseInt(duration.asHours());
+  var minutes = parseInt(duration.asMinutes()) % 60;
+  return (
+    hours.toString().replace(/^(\d)$/, "0$1") +
+    ":" +
+    minutes.toString().replace(/^(\d)$/, "0$1")
+  );
+}
+
+function setRiseTime() {
+  var stimes = SunCalc.getTimes(new Date(), latitude, longitude);
+  var sunriseStr =
+    stimes.sunrise
+      .getHours()
+      .toString()
+      .replace(/^(\d)$/, "0$1") +
+    ":" +
+    stimes.sunrise
+      .getMinutes()
+      .toString()
+      .replace(/^(\d)$/, "0$1");
+  var sunsetStr =
+    stimes.sunset
+      .getHours()
+      .toString()
+      .replace(/^(\d)$/, "0$1") +
+    ":" +
+    stimes.sunset
+      .getMinutes()
+      .toString()
+      .replace(/^(\d)$/, "0$1");
+  // console.log(sunriseStr + " " +sunsetStr)
+
+  var dayldate = stimes.sunset.getTime() - stimes.sunrise.getTime();
+  var dayLength = secondsToHMS(dayldate / 1000);
+  var nightLength = getNightLengthFromDayLength(dayLength);
+  // console.log(dayLength + " " + nightLength)
+
+  var mtimes = SunCalc.getMoonTimes(new Date(), longitude, latitude);
+  var moonriseStr =
+    mtimes.rise
+      .getHours()
+      .toString()
+      .replace(/^(\d)$/, "0$1") +
+    ":" +
+    mtimes.rise
+      .getMinutes()
+      .toString()
+      .replace(/^(\d)$/, "0$1");
+  var moonsetStr =
+    mtimes.set
+      .getHours()
+      .toString()
+      .replace(/^(\d)$/, "0$1") +
+    ":" +
+    mtimes.set
+      .getMinutes()
+      .toString()
+      .replace(/^(\d)$/, "0$1");
+  // console.log(moonriseStr + " " +moonsetStr)
+
+  $("#sunRise").text(sunriseStr);
+  $("#sunSet").text(sunsetStr);
+  $("#moonRise").text(moonriseStr);
+  $("#moonSet").text(moonsetStr);
+  $("#dayL").text(dayLength);
+  $("#nightL").text(nightLength);
+}
+
+
 const rootelem = document.documentElement;
 
 var textOrGauge = localStorage.getItem("textOrGauge");
@@ -199,6 +316,9 @@ var showYesterdayData = localStorage.getItem("showYesterdayGraph");
 
 checkStateAndTickCheckbox("textOrGauge");
 checkStateAndTickCheckbox("showYesterdayGraph");
+
+var longitude = 55.2708;
+var latitude = 25.204;
 
 var todaycolor = "#FF55B8";
 var yestercolor = "#2a4bb3";
@@ -223,7 +343,7 @@ var enablLux = localStorage.getItem("luxSensorCheckbox");
 var enableBattery = localStorage.getItem("batterySensorCheckbox");
 var enableCloud = localStorage.getItem("cloudSensorCheckbox");
 var enableGround = localStorage.getItem("groundSensorCheckbox");
-
+var enableAirGround = localStorage.getItem("airGroundSensorCheckbox");
 if (localStorage.getItem("lightdarkmode") == 1) {
   var lightmode = localStorage.getItem("lightdarkmode");
   var lightmodetoggle = 0;
@@ -679,7 +799,7 @@ if (enablePressure == 1) {
 if (enableAirQuality == 1) {
   $("#airQualitySensorCheckbox").prop("checked", true);
 
-  var PressureChart = Highcharts.chart("containerairq", {
+  var AirQualityChart = Highcharts.chart("containerairq", {
     series: [
       {
         name: "Yesterday",
@@ -801,26 +921,179 @@ if (enableAirQuality == 1) {
   cardgraphAirQuality.querySelector("#currentsensorairquality").textContent =
     "Air Quality";
   if (textOrGauge == 0) {
-    var pressureKnob = pureknob.createKnob(50, 50);
-    pressureKnob.setProperty("valMin", 0);
-    pressureKnob.setProperty("valMax", 100);
-    pressureKnob.setProperty("trackWidth", 0.2);
-    pressureKnob.setProperty("textScale", 1.5);
-    pressureKnob.setProperty("readonly", 1);
-    pressureKnob.setProperty("angleStart", -0.75 * 3.1415);
-    pressureKnob.setProperty("angleEnd", 0.75 * 3.1415);
-    pressureKnob.setProperty("colorFG", airqualityTodayColor);
-    pressureKnob.setProperty("colorBG", airqualityYesterdayColor);
-    pressureKnob.setValue(latestReadPressure);
-    var node = pressureKnob.node();
+    var airquality = pureknob.createKnob(50, 50);
+    airquality.setProperty("valMin", 0);
+    airquality.setProperty("valMax", 100);
+    airquality.setProperty("trackWidth", 0.2);
+    airquality.setProperty("textScale", 1.5);
+    airquality.setProperty("readonly", 1);
+    airquality.setProperty("angleStart", -0.75 * 3.1415);
+    airquality.setProperty("angleEnd", 0.75 * 3.1415);
+    airquality.setProperty("colorFG", airqualityTodayColor);
+    airquality.setProperty("colorBG", airqualityYesterdayColor);
+    airquality.setValue(latestReadAirQuality);
+    var node = airquality.node();
     var elem = document.getElementById("currentreadairquality");
     elem.appendChild(node);
   } else {
-    cardgraphAirQuality.querySelector("#currentreadairquality").textContent =latestReadAirQuality + airQualityUnit;
+    cardgraphAirQuality.querySelector("#currentreadairquality").textContent =
+      latestReadAirQuality + airQualityUnit;
   }
 } else {
   let cardgraphPress = document.getElementById("cardairq");
   cardgraphPress.style.display = "none";
+}
+
+if (enableAirGround == 1) {
+  $("#airGroundSensorCheckbox").prop("checked", true);
+  var airData = [
+    29.68, 30.13, 30.49, 30.45, 30.33, 30.4, 30.39, 30.17, 30.1, 30.33, 30.39,
+    30.11, 30.37, 30.35, 29.95, 30.08, 30.68, 30.52, 30.2, 30.11, 29.87, 30.06,
+    30.01, 30.01,
+  ];
+  var groundData = [
+    30.13, 30.33, 30.13, 30.29, 30.19, 30.22, 30, 30.31, 30.11, 30.47, 30.63,
+    30.19, 29.84, 30.09, 30.4, 30.41, 30.06, 29.87, 29.81, 30.09, 30.17, 29.95,
+    30.37, 30.48,
+  ];
+  var x = groundData.map(function (item, index) {
+    // In this case item correspond to currentValue of array a,
+    // using index to get value from array b
+    let y = item - airData[index];
+
+    return parseFloat(y.toFixed(2));
+  });
+  var subtracted = x;
+  // console.log(subtracted)
+  var AirGroundChart = Highcharts.chart("containerairground", {
+    series: [
+      {
+        name: "",
+        data: subtracted,
+        color: pressureTodayColor,
+        marker: {
+          enabled: false,
+        },
+      },
+    ],
+
+    title: {
+      text: "",
+      align: "left",
+    },
+    chart: {
+      height: 200,
+      type: "spline",
+      marginLeft: 0,
+      marginRight: 0,
+      spacingLeft: 0,
+      spacingRight: 0,
+      marginBottom: 35,
+
+      backgroundColor: "rgba(255, 255, 255, 0)",
+    },
+
+    credits: {
+      enabled: false,
+    },
+
+    yAxis: {
+      title: {
+        text: " ",
+      },
+      gridLineColor: "rgba(255, 255, 255, 0.1)",
+      visible: false,
+      max: 5,
+      min: -5,
+    },
+
+    xAxis: {
+      gridLineColor: "rgba(255, 255, 255, 0)",
+      lineColor: "rgba(255, 255, 255, 0)",
+      crosshair: true,
+      tickLength: 0,
+      minPadding: 0,
+      maxPadding: 0,
+      // showFirstLabel: false,
+      tickInterval: 5,
+      labels: {
+        format: "{value}:00",
+      },
+    },
+
+    legend: {
+      layout: "vertical",
+      align: "right",
+      verticalAlign: "middle",
+      enabled: false,
+    },
+    tooltip: {
+      backgroundColor: themecolor,
+      style: {
+        color: "#fefefe",
+      },
+      borderRadius: 3,
+      borderWidth: 0,
+      shared: true,
+    },
+
+    plotOptions: {
+      series: {
+        label: {
+          connectorAllowed: false,
+        },
+        pointStart: 1,
+      },
+      spline: {
+        marker: false,
+      },
+    },
+
+    responsive: {
+      rules: [
+        {
+          condition: {
+            maxWidth: 500,
+          },
+          chartOptions: {
+            legend: {
+              layout: "horizontal",
+              align: "center",
+              verticalAlign: "bottom",
+            },
+          },
+        },
+      ],
+    },
+  });
+
+  var cardgraphAirQuality = document.getElementById("cardgraphAirGround");
+  var latestReadAirGround = 0.3;
+  var airGroundUnit = "C";
+  cardgraphAirQuality.querySelector("#currentsensorairground").textContent =
+    "Air vs Ground";
+  if (textOrGauge == 0) {
+    var airgroundKnob = pureknob.createKnob(50, 50);
+    airgroundKnob.setProperty("valMin", 0);
+    airgroundKnob.setProperty("valMax", 100);
+    airgroundKnob.setProperty("trackWidth", 0.2);
+    airgroundKnob.setProperty("textScale", 1.5);
+    airgroundKnob.setProperty("readonly", 1);
+    airgroundKnob.setProperty("angleStart", -0.75 * 3.1415);
+    airgroundKnob.setProperty("angleEnd", 0.75 * 3.1415);
+    airgroundKnob.setProperty("colorFG", airqualityTodayColor);
+    airgroundKnob.setProperty("colorBG", airqualityYesterdayColor);
+    airgroundKnob.setValue(latestReadAirGround);
+    var node = airgroundKnob.node();
+    var elem = document.getElementById("currentreadairground");
+    elem.appendChild(node);
+  } else {
+    cardgraphAirQuality.querySelector("#currentreadairground").textContent =
+      latestReadAirGround + airGroundUnit;
+  }
+} else {
+  let cardgraphAirGround = document.getElementById("cardairground");
+  cardgraphAirGround.style.display = "none";
 }
 
 // Chart Update
@@ -947,6 +1220,11 @@ $("#imgContainer").on("mouseleave", function () {
   $("#imgContainer button").css("visibility", "hidden");
 });
 
+// setTimeout(function () {)},3000);
+
+setTimeTopBar();
+setInterval(setTimeTopBar(), 60000);
+
 // document.getElementsByClassName("toggleSlideTheme")[0].click();
 
 // document.getElementsByClassName("toggleSlideSensor")[0].click();
@@ -1000,50 +1278,44 @@ $.getJSON(
 
 const getJulianDate = (date = new Date()) => {
   const time = date.getTime();
-  const tzoffset = date.getTimezoneOffset()
-  
-  return (time / 86400000) - (tzoffset / 1440) + 2440587.5;
-}
+  const tzoffset = date.getTimezoneOffset();
+
+  return time / 86400000 - tzoffset / 1440 + 2440587.5;
+};
 const LUNAR_MONTH = 29.530588853;
 const getLunarAge = (date = new Date()) => {
   const percent = getLunarAgePercent(date);
   const age = percent * LUNAR_MONTH;
   return age;
-}
+};
 const getLunarAgePercent = (date = new Date()) => {
   return normalize((getJulianDate(date) - 2451550.1) / LUNAR_MONTH);
-}
-const normalize = value => {
+};
+const normalize = (value) => {
   value = value - Math.floor(value);
-  if (value < 0)
-    value = value + 1
+  if (value < 0) value = value + 1;
   return value;
-}
+};
 const getLunarPhase = (date = new Date()) => {
   const age = getLunarAge(date);
-  if (age < 1.84566)
-    return "New";
-  else if (age < 5.53699)
-    return "Waxing Crescent";
-  else if (age < 9.22831)
-    return "First Quarter";
-  else if (age < 12.91963)
-    return "Waxing Gibbous";
-  else if (age < 16.61096)
-    return "Full";
-  else if (age < 20.30228)
-    return "Waning Gibbous";
-  else if (age < 23.99361)
-    return "Last Quarter";
-  else if (age < 27.68493)
-    return "Waning Crescent";
+  if (age < 1.84566) return "New";
+  else if (age < 5.53699) return "Waxing Crescent";
+  else if (age < 9.22831) return "First Quarter";
+  else if (age < 12.91963) return "Waxing Gibbous";
+  else if (age < 16.61096) return "Full";
+  else if (age < 20.30228) return "Waning Gibbous";
+  else if (age < 23.99361) return "Last Quarter";
+  else if (age < 27.68493) return "Waning Crescent";
   return "New";
-}
+};
 const isWaxing = (date = new Date()) => {
   const age = getLunarAge(date);
   return age <= 14.765;
-}
+};
 const isWaning = (date = new Date()) => {
   const age = getLunarAge(date);
   return age > 14.765;
-}
+};
+
+setRiseTime();
+setInterval(setRiseTime(), 86400000);
