@@ -197,9 +197,31 @@
               <div class="about" id="cardImage">
                 <h3>Lunar Image</h3>
                 <h4>Daily</h4>
-                <div id="lunarImgDiv">
-                  <img id="lunarImg" src="/moon.jpg" alt="" />
+                <div class="ImgDiv">
+                  <img class="Img" src="images/moon.jpg" alt="" />
                 </div>
+              </div>
+            </div>
+          </div>
+          <div id="cardLatestSatelliteImage">
+            <div class="card smallCard">
+              <div class="about" id="cardImage">
+                <h3>Latest Satellite Image</h3>
+                <h4>Every 3 Hours</h4>
+              </div>
+              <div class="ImgDiv">
+                <img class="Img" src="https://eumetview.eumetsat.int/static-images/latestImages/EUMETSAT_MSGIODC_IR108Color_MiddleEast.jpg" alt="" />
+              </div>
+            </div>
+          </div>
+          <div id="cardAllSkyImage">
+            <div class="card smallCard">
+              <div class="about" id="cardImage">
+                <h3>Latest All Sky Image</h3>
+                <h4>Every 5 Minutes</h4>
+              </div>
+              <div class="ImgDiv">
+                <img class="Img" src="images/2017_06_25__04_06_36.jpeg" alt="" />
               </div>
             </div>
           </div>
@@ -213,6 +235,23 @@
                 <h3>Day Length: </h3><h4 id="dayL"></h4>
                 <h3>Night Length: </h3><h4 id="nightL"></h4>
               </div>
+            </div>
+          </div>
+          <div id="cardRainCup">
+            <div class="card smallCard">
+              <div class="about" id="cardgraphrainmeter">
+                <h3 class="alignleft" id="currentsensorrainmeter"></h3>
+                <h3 class="alignright" id="currentreadrainmeter"></h3>
+                <br />
+                <h4>24 Hours</h4>
+                <div class="legends"></div>
+              </div>
+              <figure class="highcharts-figure">
+                <div id="containerrainmeter"></div>
+              </figure>
+              <figure class="highcharts-figure">
+                <div id="containerrainmetercup"></div>
+              </figure>
             </div>
           </div>
         </div>
@@ -229,9 +268,9 @@
         <!-- <br /> -->
         <div id="location">
           <label for="longitude">Longitude:</label>
-          <input type="text" id="longitudeID" name="longitude"><br><br>
+          <input type="text" id="longitudeID" name="longitude" placeholder="+25 for E, -25 for W">
           <label for="latitude">latitude:</label>
-          <input type="text" id="latitudeID" name="latitude"><br><br>
+          <input type="text" id="latitudeID" name="latitude" placeholder="+55 for N, -55 for S">
         </div>
         
         <div id="toggleSlide" class="toggleSlideTheme">

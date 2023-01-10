@@ -316,9 +316,10 @@ var showYesterdayData = localStorage.getItem("showYesterdayGraph");
 
 checkStateAndTickCheckbox("textOrGauge");
 checkStateAndTickCheckbox("showYesterdayGraph");
-
-var longitude = 55.2708;
-var latitude = 25.204;
+localStorage.setItem("longitude", 55.2708);
+localStorage.setItem("latitude", 25.204);
+var longitude = localStorage.getItem("longitude");//55.2708;
+var latitude = localStorage.getItem("latitude");//25.204;
 
 var todaycolor = "#FF55B8";
 var yestercolor = "#2a4bb3";
@@ -975,6 +976,14 @@ if (enableAirGround == 1) {
           enabled: false,
         },
       },
+      // {
+      //   name: "zero",
+      //   data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+      //   color: pressureYesterdayColor,
+      //   marker: {
+      //     enabled: false,
+      //   },
+      // }
     ],
 
     title: {
@@ -1001,14 +1010,14 @@ if (enableAirGround == 1) {
       title: {
         text: " ",
       },
-      gridLineColor: "rgba(255, 255, 255, 0.1)",
-      visible: false,
+      gridLineColor: "rgba(255, 255, 255, 0.25)",
+      visible: true,
       max: 5,
       min: -5,
     },
 
     xAxis: {
-      gridLineColor: "rgba(255, 255, 255, 0)",
+      gridLineColor: "rgba(255, 255, 255, 1)",
       lineColor: "rgba(255, 255, 255, 0)",
       crosshair: true,
       tickLength: 0,

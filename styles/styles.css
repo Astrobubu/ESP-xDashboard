@@ -539,16 +539,19 @@ input[type="color"]::-webkit-color-swatch {
 .card2 {
   text-align: center;
 }
-#lunarImgDiv {
+.ImgDiv {
   /* border-radius: 550px; */
   overflow: hidden;
   /* width: 80%; */
   /* display: flex; */
-  mix-blend-mode: exclusion;
   padding-left: 20px;
   padding-right: 20px;
 }
-#lunarImg {
+
+#cardLunarImage .ImgDiv {
+  mix-blend-mode: exclusion;
+}
+.Img {
   width: 100%;
   scale: 100%;
 }
@@ -612,15 +615,38 @@ input[type="color"]::-webkit-color-swatch {
   border-width: 0px 0px 1px 0px;
   border-color: var(--text-color);
   color: var(--text-color);
+  transition: 0.2s;
 }
 input:focus,
 select:focus,
 textarea:focus,
 button:focus {
-    outline: none;
+  outline: none;
 }
-#location input:focus{
+#location input:focus {
   border-style: solid;
   border-width: 0px 0px 1px 0px;
   border-color: var(--theme-color);
+  transition: 0.2s;
+}
+
+#location {
+  display: flex;
+  gap: 2em;
+}
+
+#cardAllSkyImage .ImgDiv{
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 15px;
+  overflow: visible;
+  scale: 110%;
+}
+
+#cardLatestSatelliteImage .ImgDiv{
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 15px;
+  overflow: visible;
+  /* scale: 110%; */
 }
