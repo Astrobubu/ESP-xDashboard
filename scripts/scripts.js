@@ -705,6 +705,23 @@ makeGraph(
   "currentreadpressure",
   "cardpress",
   enablePressure
+); 
+makeGraph(
+  "#airQualitySensorCheckbox",
+  "containerairq",
+  "Yesterday",
+  yesd,
+  airqualityYesterdayColor,
+  "Today",
+  todd,
+  airqualityTodayColor,
+  "cardgraphAirQuality",
+  79,
+  "#currentsensorairquality",
+  "Air Quality",
+  "currentreadairquality",
+  "cardairq",
+  enableAirQuality
 );
 
 // if (enableHumidity == 1) {
