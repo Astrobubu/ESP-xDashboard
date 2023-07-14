@@ -706,6 +706,7 @@ makeGraph(
   "cardpress",
   enablePressure
 ); 
+
 makeGraph(
   "#airQualitySensorCheckbox",
   "containerairq",
@@ -723,7 +724,6 @@ makeGraph(
   "cardairq",
   enableAirQuality
 );
-
 
 if (enableAirGround == 1) {
   $("#airGroundSensorCheckbox").prop("checked", true);
